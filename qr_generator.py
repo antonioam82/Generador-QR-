@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import qrcode
 import threading
 
@@ -13,10 +14,17 @@ def inicia():
     t.start()
 
 def create_code():
+    global img, size
     if input_text.get()!="":
-        data = input_text.get()
-        img = qrcode.make(data)
-        img.save("my_qrcode.png")
+        try:
+            data = input_text.get()
+            img = qrcode.make(data)
+            img.save("my_qrcode.png")
+            messagebox.showinfo("QR CREADO","Código creado con éxito")
+        except:
+            messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    else:
+        messagebox.showwarning("ERROR","Elemento no especificado")
         
 Label(ventana,text="RUTA O DIRECCIÓN",bg="light blue").place(x=322,y=85)
 Entry(ventana,font=('Arial',15),width=45,justify="left",textvariable=input_text).place(x=131,y=107)
