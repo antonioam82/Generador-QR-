@@ -1,6 +1,25 @@
 import tkinter
 from tkinter import *
-from tkinter import ttk
+from tkinter import messagebox, ttk
+import qrcode
+import threading
+
+def create_code():
+    global img, size
+    if input_text.get()!="":
+        try:
+            data = input_text.get()
+            img = qrcode.make(data)
+            img.save("my_qrcode.png")
+            messagebox.showinfo("QR CREADO","Código creado con éxito")
+        except:
+            messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    else:
+        messagebox.showwarning("ERROR","Elemento no especificado")
+
+def inicia():
+    t = threading.Thread(target=create_code)
+    t.start()
 
 root = tkinter.Tk()
 color = "light blue"
@@ -12,7 +31,7 @@ f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
 f3 = tkinter.Frame(nb, background=color)
 Entry(f1,font=('Arial',15),width=45,justify="left",textvariable=input_text).place(x=131,y=97)
-Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green").place(x=330,y=174)
+Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green",command=inicia).place(x=330,y=174)
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
