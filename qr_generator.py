@@ -21,11 +21,11 @@ nb.pack(expand=1, fill='both')
 
 root.mainloop()
 
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox, ttk
-import qrcode
-import threading
+#import tkinter as tk
+#from tkinter import *
+#from tkinter import messagebox, ttk
+#import qrcode
+#import threading
 
 #ventana = Tk()
 #ventana.title("QR Code Generator")
