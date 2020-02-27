@@ -6,7 +6,6 @@ import qrcode
 import threading
 
 def create_code():
-    #if input_text.get()!="":
     try:
         data = input_text.get()
         img = qrcode.make(data)
@@ -14,11 +13,8 @@ def create_code():
         messagebox.showinfo("QR CREADO","Código creado con éxito")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
-    #else:
-        #messagebox.showwarning("ERROR","Introduce dirección")
 
 def create_codeT():
-    #if display.get('2.0',END)!="":
     try:
         data = display.get('1.0',END)
         img = qrcode.make(data)
@@ -26,8 +22,6 @@ def create_codeT():
         messagebox.showinfo("QR CREADO","Código creado con éxito")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
-    #else:
-        #messagebox.showwarning("ERROR","Introduce texto")
 
 def inicia(t):
     if t == "w":
