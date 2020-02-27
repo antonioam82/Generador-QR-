@@ -58,6 +58,7 @@ display.place(x=131,y=100)
 Label(f2,text="TEXTO:",bg="light blue").place(x=88,y=95)
 Button(f2,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
 
+#AGREGAR PESTAÑAS
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='ARCHIVO', padding=3)
