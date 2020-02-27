@@ -6,6 +6,7 @@ import qrcode
 import threading
 
 def create_code():
+    #if input_text.get()!="":
     try:
         data = input_text.get()
         img = qrcode.make(data)
@@ -13,8 +14,11 @@ def create_code():
         messagebox.showinfo("QR CREADO","Código creado con éxito")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    #else:
+        #messagebox.showwarning("ERROR","Introduce dirección")
 
 def create_codeT():
+    #if display.get('2.0',END)!="":
     try:
         data = display.get('1.0',END)
         img = qrcode.make(data)
@@ -22,6 +26,8 @@ def create_codeT():
         messagebox.showinfo("QR CREADO","Código creado con éxito")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    #else:
+        #messagebox.showwarning("ERROR","Introduce texto")
 
 def inicia(t):
     if t == "w":
@@ -41,6 +47,7 @@ nb.pressed_index = None
 f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
 f3 = tkinter.Frame(nb, background=color)
+f4 = tkinter.Frame(nb, background=color)
 
 #ELEMENTOS PESTAÑA "f1"
 Label(f1,text="RUTA O DIRECCIÓN",bg="light blue").place(x=322,y=74)
@@ -54,7 +61,8 @@ Button(f2,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
-nb.add(f3, text='ARCHIVO', padding=3)
+nb.add(f3, text='PDF', padding=3)
+nb.add(f4, text='MP3',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
