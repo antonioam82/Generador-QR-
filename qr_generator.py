@@ -34,7 +34,7 @@ def inicia(t):
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
-nb = ttk.Notebook(width=750, height=250)
+nb = ttk.Notebook(width=765, height=250)
 input_text=StringVar()
 nb.pressed_index = None
 
@@ -44,7 +44,7 @@ f3 = tkinter.Frame(nb, background=color)
 f4 = tkinter.Frame(nb, background=color)
 
 #ELEMENTOS PESTAÑA "f1"
-Label(f1,text="RUTA O DIRECCIÓN",bg="light blue").place(x=322,y=74)
+Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
 Entry(f1,font=('Arial',15),width=45,justify="left",textvariable=input_text).place(x=131,y=97)
 Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('w')).place(x=330,y=174)
 #ELEMENTOS PESTAÑA "f2"
