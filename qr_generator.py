@@ -38,6 +38,7 @@ def inicia(t):
         t.start()
 
 root = tkinter.Tk()
+root.title("QR Code Generator")
 color = "light blue"
 nb = ttk.Notebook(width=750, height=250)
 input_text=StringVar()
@@ -53,7 +54,7 @@ Entry(f1,font=('Arial',15),width=45,justify="left",textvariable=input_text).plac
 Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('w')).place(x=330,y=174)
 #ELEMENTOS PESTAÑA "f2"
 display=scrolledtext.ScrolledText(f2,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
-display.place(x=131,y=100)
+display.place(x=131,y=97)
 Label(f2,text="TEXTO:",bg="light blue").place(x=88,y=95)
 Button(f2,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
 
