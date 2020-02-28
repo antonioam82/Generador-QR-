@@ -5,18 +5,13 @@ import tkinter.scrolledtext as scrolledtext
 import qrcode
 import threading
 
-def create_code():
+def create_code(ti):
     try:
-        data = input_text.get()
-        img = qrcode.make(data)
-        img.save("my_qrcode.png")
-        messagebox.showinfo("QR CREADO","Código creado con éxito")
-    except:
-        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
-
-def create_codeT():
-    try:
-        data = display.get('1.0',END)
+        if ti == "w":
+            data = input_text.get()
+        else:
+            data = display.get('1.0',END)
+        print(data)
         img = qrcode.make(data)
         img.save("my_qrcode.png")
         messagebox.showinfo("QR CREADO","Código creado con éxito")
@@ -24,11 +19,7 @@ def create_codeT():
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def inicia(t):
-    if t == "w":
-        t = threading.Thread(target=create_code)
-        t.start()
-    else:
-        t = threading.Thread(target=create_codeT)
+        t = threading.Thread(target=create_code,args=t)
         t.start()
 
 root = tkinter.Tk()
