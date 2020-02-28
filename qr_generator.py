@@ -13,7 +13,7 @@ def create_code(ti):
             data = display.get('1.0',END)
         print(data)
         img = qrcode.make(data)
-        img.save("my_qrcode.png")
+        img.save("my_qrcode"+formato)
         messagebox.showinfo("QR CREADO","Código creado con éxito")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
@@ -22,12 +22,17 @@ def inicia(t):
         t = threading.Thread(target=create_code,args=t)
         t.start()
 
+def cambia_formato(f):
+    global formato
+    formato = f
+
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
 nb = ttk.Notebook(width=997, height=250)#765
 input_text=StringVar()
 nb.pressed_index = None
+formato = ".png"
 
 f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
@@ -39,14 +44,16 @@ Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
 Entry(f1,font=('Arial',15),width=45,justify="left",textvariable=input_text).place(x=131,y=97)
 Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('w')).place(x=330,y=174)
 Label(f1,text="FORMATO",bg="light blue").place(x=780,y=66)
-Button(f1,text="PNG",width=15,bg="light green").place(x=754,y=97)
-Button(f1,text="JPG",width=15,bg="light green").place(x=754,y=130)
-
+Button(f1,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png')).place(x=754,y=97)
+Button(f1,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg')).place(x=754,y=130)
 #ELEMENTOS PESTAÑA "f2"
 display=scrolledtext.ScrolledText(f2,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
 display.place(x=131,y=97)
 Label(f2,text="TEXTO:",bg="light blue").place(x=88,y=95)
 Button(f2,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
+Label(f2,text="FORMATO",bg="light blue").place(x=780,y=66)
+Button(f2,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png')).place(x=754,y=97)
+Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg')).place(x=754,y=130)
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
