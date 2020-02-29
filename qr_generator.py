@@ -28,6 +28,8 @@ def cambia_formato(f,tf):
     texto_formato = tf
     etiFormato1.configure(text=texto_formato)
     etiFormato2.configure(text=texto_formato)
+    etiFormato3.configure(text=texto_formato)
+    etiFormato4.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -51,7 +53,6 @@ etiFormato1=Label(f1,text=texto_formato,bg="light blue")
 etiFormato1.place(x=751,y=66)#780
 Button(f1,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
 Button(f1,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-
 #ELEMENTOS PESTAÑA "f2"
 display=scrolledtext.ScrolledText(f2,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
 display.place(x=131,y=97)
@@ -61,6 +62,16 @@ etiFormato2=Label(f2,text=texto_formato,bg="light blue")
 etiFormato2.place(x=751,y=66)
 Button(f2,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+#ELEMENTOS PESTAÑA "f3"
+Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
+Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+etiFormato3=Label(f3,text=texto_formato,bg="light blue")
+etiFormato3.place(x=751,y=66)
+#ELEMENTOS PESTAÑA "f4"
+Button(f4,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
+Button(f4,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+etiFormato4=Label(f4,text=texto_formato,bg="light blue")
+etiFormato4.place(x=751,y=66)
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
@@ -69,5 +80,4 @@ nb.add(f4, text='MP3',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
-
 
