@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import tkinter
 from tkinter import *
 from tkinter import messagebox, ttk
