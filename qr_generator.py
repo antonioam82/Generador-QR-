@@ -2,23 +2,32 @@
 # -*- coding: utf-8 -*-
 import tkinter
 from tkinter import *
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 import qrcode
 import threading
 
 def create_code(ti):
-    try:
-        if ti == "w":
-            data = input_text.get()
-        else:
-            data = display.get('1.0',END)
-        print(data)
-        img = qrcode.make(data)
-        img.save("my_qrcode"+formato)
-        messagebox.showinfo("QR CREADO","Código creado con éxito")
-    except:
-        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    global data
+    #try:
+    if ti == "w":
+        data = input_text.get()
+    if ti == "t":
+        data = display.get('1.0',END)
+    #print(data)
+    img = qrcode.make(data)
+    img.save("my_qrcode"+formato)
+    messagebox.showinfo("QR CREADO","Código creado con éxito")
+    #except:
+        #messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+
+def abrir_archivo(ex):
+    global data
+    ruta = filedialog.askopenfilename(initialdir = "/",
+           title = "Seleccione Archivo",filetypes = ((ex+" files","*."+ex),
+           ("all files","*.*")))
+    data = str(ruta.split("/")[-1])
+    print(data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
@@ -67,22 +76,22 @@ Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.j
 #ELEMENTOS PESTAÑA "f3"
 Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f3,text="BUSCAR PDF",fg="black",width=15,bg="light green").place(x=321,y=130)
-Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
+Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png")).place(x=321,y=130)
+Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('i')).place(x=330,y=174)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
 etiFormato3.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f4"
 Button(f4,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f4,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f4,text="BUSCAR MP3",fg="black",width=15,bg="light green").place(x=321,y=130)
-Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
+Button(f4,text="BUSCAR JPG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("jpg")).place(x=321,y=130)
+Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato4=Label(f4,text=texto_formato,bg="light blue")
 etiFormato4.place(x=751,y=66)
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
-nb.add(f3, text='PDF', padding=3)
-nb.add(f4, text='MP3',padding=3)
+nb.add(f3, text='PNG', padding=3)
+nb.add(f4, text='JPG',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
