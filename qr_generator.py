@@ -9,17 +9,17 @@ import threading
 
 def create_code(ti):
     global data
-    #try:
-    if ti == "w":
-        data = input_text.get()
-    if ti == "t":
-        data = display.get('1.0',END)
-    #print(data)
-    img = qrcode.make(data)
-    img.save("my_qrcode"+formato)
-    messagebox.showinfo("QR CREADO","Código creado con éxito")
-    #except:
-        #messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    try:
+        if ti == "w":
+            data = input_text.get()
+        if ti == "t":
+            data = display.get('1.0',END)
+        #print(data)
+        img = qrcode.make(data)
+        img.save("my_qrcode"+formato)
+        messagebox.showinfo("QR CREADO","Código creado con éxito")
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def abrir_archivo(ex):
     global data
