@@ -67,11 +67,13 @@ Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.j
 #ELEMENTOS PESTAÑA "f3"
 Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
 etiFormato3.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f4"
 Button(f4,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f4,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
 etiFormato4=Label(f4,text=texto_formato,bg="light blue")
 etiFormato4.place(x=751,y=66)
 
