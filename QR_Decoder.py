@@ -8,7 +8,7 @@ dtector = cv2.QRCodeDetector()
 
 while True:
     print("----------------------------------QR DECODER----------------------------------")
-    archiv = input("Archivo a decodificar: ")
+    archiv = input("QR a leer: ")
     
     if archiv in os.listdir():
         img = cv2.imread(archiv)
