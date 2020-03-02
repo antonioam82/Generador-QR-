@@ -55,6 +55,8 @@ f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
 f3 = tkinter.Frame(nb, background=color)
 f4 = tkinter.Frame(nb, background=color)
+f5 = tkinter.Frame(nb, background=color)
+f6 = tkinter.Frame(nb, background=color)
 
 #ELEMENTOS PESTAÑA "f1"
 Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
@@ -92,6 +94,8 @@ nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='PNG', padding=3)
 nb.add(f4, text='JPG',padding=3)
+nb.add(f5, text='MP3',padding=3)
+nb.add(f6, text='PDF',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
