@@ -1,5 +1,4 @@
 from pyzbar.pyzbar import decode
-from PIL import Image
 from VALID import ns
 import cv2
 import os
