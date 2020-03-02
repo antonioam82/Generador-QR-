@@ -41,6 +41,8 @@ def cambia_formato(f,tf):
     etiFormato2.configure(text=texto_formato)
     etiFormato3.configure(text=texto_formato)
     etiFormato4.configure(text=texto_formato)
+    etiFormato5.configure(text=texto_formato)
+    etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -89,6 +91,16 @@ Button(f4,text="BUSCAR JPG",fg="black",width=15,bg="light green",command=lambda:
 Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato4=Label(f4,text=texto_formato,bg="light blue")
 etiFormato4.place(x=751,y=66)
+#ELEMENTOS PESTAÑA "f5"
+Button(f5,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
+Button(f5,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+etiFormato5=Label(f5,text=texto_formato,bg="light blue")
+etiFormato5.place(x=751,y=66)
+#ELEMENTOS PESTAÑA "f6"
+Button(f6,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
+Button(f6,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+etiFormato6=Label(f6,text=texto_formato,bg="light blue")
+etiFormato6.place(x=751,y=66)
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
