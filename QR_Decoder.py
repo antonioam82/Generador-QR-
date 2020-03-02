@@ -4,7 +4,7 @@ from VALID import ns
 import os
 
 while True:
-    archiv = input("Archivo a decodificar: ")
+    archiv = input("QR a decodificar: ")
     if archiv in os.listdir():
         info = decode(Image.open(archiv))
         print("\n")
