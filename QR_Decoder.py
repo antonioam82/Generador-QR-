@@ -8,6 +8,7 @@ info = ""
 dtector = cv2.QRCodeDetector()
 
 while True:
+    print("----------------------------------QR DECODER----------------------------------")
     archiv = input("Archivo a decodificar: ")
     
     if archiv in os.listdir():
@@ -24,4 +25,5 @@ while True:
     conti = ns(input("\n¿Desea continuar?(n/s): "))
     if conti == "n":
         break
+
 
