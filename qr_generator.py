@@ -81,7 +81,7 @@ Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.j
 Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png")).place(x=321,y=130)
-Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('i')).place(x=330,y=174)
+Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
 etiFormato3.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f4"
@@ -94,11 +94,15 @@ etiFormato4.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f5"
 Button(f5,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f5,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f5,text="BUSCAR MP3",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("mp3")).place(x=321,y=130)
+Button(f5,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato5=Label(f5,text=texto_formato,bg="light blue")
 etiFormato5.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f6"
 Button(f6,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f6,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f6,text="BUSCAR PDF",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("pdf")).place(x=321,y=130)
+Button(f6,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato6=Label(f6,text=texto_formato,bg="light blue")
 etiFormato6.place(x=751,y=66)
 
