@@ -1,16 +1,27 @@
 from pyzbar.pyzbar import decode
 from PIL import Image
 from VALID import ns
+import cv2
 import os
+info = ""
+
+dtector = cv2.QRCodeDetector()
 
 while True:
-    archiv = input("QR a decodificar: ")
+    archiv = input("Archivo a decodificar: ")
+    
     if archiv in os.listdir():
-        info = decode(Image.open(archiv))
-        print("\n")
-        print(info)
+        img = cv2.imread(archiv)
+        data,bbox,sc=dtector.detectAndDecode(img)
+        if bbox is not None:
+            info = decode(img)
+            print("\n")
+            print(info)
+        else:
+            print("EL ARCHIVO HA DE SER UN CÓDIGO QR")
     else:
         print("ARCHIVO NO ENCONTRADO")
-    conti = input("\n¿Desea continuar?(n/s): ")
+    conti = ns(input("\n¿Desea continuar?(n/s): "))
     if conti == "n":
         break
+
