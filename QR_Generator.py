@@ -35,7 +35,6 @@ def inicia(t):
 
 def cambia_formato(f,tf):
     global formato, texto_formato
-    
     formato = f
     texto_formato = tf
     for el in bts:
