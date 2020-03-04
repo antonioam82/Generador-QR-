@@ -35,14 +35,17 @@ def inicia(t):
 
 def cambia_formato(f,tf):
     global formato, texto_formato
+    bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6]
     formato = f
     texto_formato = tf
-    etiFormato1.configure(text=texto_formato)
-    etiFormato2.configure(text=texto_formato)
-    etiFormato3.configure(text=texto_formato)
-    etiFormato4.configure(text=texto_formato)
-    etiFormato5.configure(text=texto_formato)
-    etiFormato6.configure(text=texto_formato)
+    for el in bts:
+        el.configure(text=texto_formato)
+    #etiFormato1.configure(text=texto_formato)
+    #etiFormato2.configure(text=texto_formato)
+    #etiFormato3.configure(text=texto_formato)
+    #etiFormato4.configure(text=texto_formato)
+    #etiFormato5.configure(text=texto_formato)
+    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
