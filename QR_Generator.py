@@ -27,6 +27,14 @@ def abrir_archivo(ex):
            title = "Seleccione Archivo",filetypes = ((ex+" files","*."+ex),
            ("all files","*.*")))
     data = str(ruta.split("/")[-1])
+    if ex == "png":
+        etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
+    elif ex == "jpg":
+        etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
+    elif ex == "mp3":
+        etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
+    elif ex == "pdf":
+        etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
     print(data)
 
 def inicia(t):
@@ -51,6 +59,7 @@ root.title("QR Code Generator")
 color = "light blue"
 nb = ttk.Notebook(width=997, height=250)#765
 input_text=StringVar()
+input_text2=StringVar()
 nb.pressed_index = None
 formato = ".png"
 texto_formato = "FORMATO: PNG"
@@ -84,6 +93,8 @@ Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png")).place(x=321,y=130)
 Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+etiElemen1=Label(f3,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
+etiElemen1.place(x=97,y=70)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
 etiFormato3.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f4"
@@ -91,6 +102,8 @@ Button(f4,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f4,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f4,text="BUSCAR JPG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("jpg")).place(x=321,y=130)
 Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+etiElemen2=Label(f4,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
+etiElemen2.place(x=97,y=70)
 etiFormato4=Label(f4,text=texto_formato,bg="light blue")
 etiFormato4.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f5"
@@ -98,6 +111,8 @@ Button(f5,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f5,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f5,text="BUSCAR MP3",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("mp3")).place(x=321,y=130)
 Button(f5,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+etiElemen3=Label(f5,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
+etiElemen3.place(x=97,y=70)
 etiFormato5=Label(f5,text=texto_formato,bg="light blue")
 etiFormato5.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f6"
@@ -105,6 +120,8 @@ Button(f6,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f6,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f6,text="BUSCAR PDF",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("pdf")).place(x=321,y=130)
 Button(f6,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+etiElemen4=Label(f6,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
+etiElemen4.place(x=97,y=70)
 etiFormato6=Label(f6,text=texto_formato,bg="light blue")
 etiFormato6.place(x=751,y=66)
 
