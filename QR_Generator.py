@@ -35,7 +35,7 @@ def inicia(t):
 
 def cambia_formato(f,tf):
     global formato, texto_formato
-    bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6]
+    
     formato = f
     texto_formato = tf
     for el in bts:
@@ -108,6 +108,8 @@ Button(f6,text="BUSCAR PDF",fg="black",width=15,bg="light green",command=lambda:
 Button(f6,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiFormato6=Label(f6,text=texto_formato,bg="light blue")
 etiFormato6.place(x=751,y=66)
+
+bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6]
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
