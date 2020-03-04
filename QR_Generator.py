@@ -21,20 +21,14 @@ def create_code(ti):
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
-def abrir_archivo(ex):
+def abrir_archivo(ex,n):
     global data
     ruta = filedialog.askopenfilename(initialdir = "/",
            title = "Seleccione Archivo",filetypes = ((ex+" files","*."+ex),
            ("all files","*.*")))
     data = str(ruta.split("/")[-1])
-    if ex == "png":
-        etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
-    elif ex == "jpg":
-        etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
-    elif ex == "mp3":
-        etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
-    elif ex == "pdf":
-        etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
+    label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
+
     print(data)
 
 def inicia(t):
@@ -47,12 +41,6 @@ def cambia_formato(f,tf):
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
-    #etiFormato1.configure(text=texto_formato)
-    #etiFormato2.configure(text=texto_formato)
-    #etiFormato3.configure(text=texto_formato)
-    #etiFormato4.configure(text=texto_formato)
-    #etiFormato5.configure(text=texto_formato)
-    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -91,7 +79,7 @@ Button(f2,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.j
 #ELEMENTOS PESTAÑA "f3"
 Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png")).place(x=321,y=130)
+Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png",0)).place(x=321,y=130)
 Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiElemen1=Label(f3,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen1.place(x=97,y=70)
@@ -100,7 +88,7 @@ etiFormato3.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f4"
 Button(f4,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f4,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f4,text="BUSCAR JPG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("jpg")).place(x=321,y=130)
+Button(f4,text="BUSCAR JPG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("jpg",1)).place(x=321,y=130)
 Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiElemen2=Label(f4,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen2.place(x=97,y=70)
@@ -109,7 +97,7 @@ etiFormato4.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f5"
 Button(f5,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f5,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f5,text="BUSCAR MP3",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("mp3")).place(x=321,y=130)
+Button(f5,text="BUSCAR MP3",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("mp3",2)).place(x=321,y=130)
 Button(f5,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiElemen3=Label(f5,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen3.place(x=97,y=70)
@@ -118,7 +106,7 @@ etiFormato5.place(x=751,y=66)
 #ELEMENTOS PESTAÑA "f6"
 Button(f6,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
 Button(f6,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f6,text="BUSCAR PDF",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("pdf")).place(x=321,y=130)
+Button(f6,text="BUSCAR PDF",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("pdf",3)).place(x=321,y=130)
 Button(f6,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
 etiElemen4=Label(f6,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen4.place(x=97,y=70)
@@ -126,6 +114,7 @@ etiFormato6=Label(f6,text=texto_formato,bg="light blue")
 etiFormato6.place(x=751,y=66)
 
 bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6]
+label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4]
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
