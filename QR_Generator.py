@@ -18,6 +18,8 @@ def create_code(ti):
         img = qrcode.make(data)
         img.save("my_qrcode"+formato)
         messagebox.showinfo("QR CREADO","Código creado con éxito")
+        for i in label_file:
+            i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
@@ -28,8 +30,15 @@ def abrir_archivo(ex,n):
            ("all files","*.*")))
     data = str(ruta.split("/")[-1])
     label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
- 
-    #print(data)
+    #if ex == "png":
+        #etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "jpg":
+        #etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "mp3":
+        #etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "pdf":
+        #etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
+    print(data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
@@ -41,6 +50,12 @@ def cambia_formato(f,tf):
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
+    #etiFormato1.configure(text=texto_formato)
+    #etiFormato2.configure(text=texto_formato)
+    #etiFormato3.configure(text=texto_formato)
+    #etiFormato4.configure(text=texto_formato)
+    #etiFormato5.configure(text=texto_formato)
+    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -136,4 +151,3 @@ nb.add(f7, text='MP4',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
-
