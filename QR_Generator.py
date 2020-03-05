@@ -28,7 +28,14 @@ def abrir_archivo(ex,n):
            ("all files","*.*")))
     data = str(ruta.split("/")[-1])
     label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
-
+    #if ex == "png":
+        #etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "jpg":
+        #etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "mp3":
+        #etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "pdf":
+        #etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
     print(data)
 
 def inicia(t):
@@ -41,6 +48,12 @@ def cambia_formato(f,tf):
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
+    #etiFormato1.configure(text=texto_formato)
+    #etiFormato2.configure(text=texto_formato)
+    #etiFormato3.configure(text=texto_formato)
+    #etiFormato4.configure(text=texto_formato)
+    #etiFormato5.configure(text=texto_formato)
+    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -58,6 +71,7 @@ f3 = tkinter.Frame(nb, background=color)
 f4 = tkinter.Frame(nb, background=color)
 f5 = tkinter.Frame(nb, background=color)
 f6 = tkinter.Frame(nb, background=color)
+f7 = tkinter.Frame(nb, background=color)
 
 #ELEMENTOS PESTAÑA "f1"
 Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
@@ -112,9 +126,18 @@ etiElemen4=Label(f6,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80
 etiElemen4.place(x=97,y=70)
 etiFormato6=Label(f6,text=texto_formato,bg="light blue")
 etiFormato6.place(x=751,y=66)
+#ELEMENTOS PESTAÑA "f7"
+Button(f7,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)#754
+Button(f7,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f7,text="BUSCAR VIDEO",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("mp4",4)).place(x=321,y=130)
+Button(f7,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+etiElemen5=Label(f7,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
+etiElemen5.place(x=97,y=70)
+etiFormato7=Label(f7,text=texto_formato,bg="light blue")
+etiFormato7.place(x=751,y=66)
 
-bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6]
-label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4]
+bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7]
+label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5]
 
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
@@ -122,6 +145,7 @@ nb.add(f3, text='PNG', padding=3)
 nb.add(f4, text='JPG',padding=3)
 nb.add(f5, text='MP3',padding=3)
 nb.add(f6, text='PDF',padding=3)
+nb.add(f7, text='MP4',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
