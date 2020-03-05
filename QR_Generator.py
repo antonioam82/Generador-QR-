@@ -6,6 +6,7 @@ from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 import qrcode
 import threading
+import os
 
 def create_code(ti):
     global data
@@ -28,10 +29,22 @@ def abrir_archivo(ex,n):
     ruta = filedialog.askopenfilename(initialdir = "/",
            title = "Seleccione Archivo",filetypes = ((ex+" files","*."+ex),
            ("all files","*.*")))
-    data = str(ruta.split("/")[-1])
-    label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
 
-    #print(data)
+    lista_ruta = ruta.split("/")
+    data = str(lista_ruta[-1])
+    #lis_nd = "/".join(lista_ruta[:-1])
+    #os.chdir(lis_nd)
+    
+    label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
+    #if ex == "png":
+        #etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "jpg":
+        #etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "mp3":
+        #etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
+    #elif ex == "pdf":
+        #etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
+    print(data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
@@ -43,6 +56,12 @@ def cambia_formato(f,tf):
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
+    #etiFormato1.configure(text=texto_formato)
+    #etiFormato2.configure(text=texto_formato)
+    #etiFormato3.configure(text=texto_formato)
+    #etiFormato4.configure(text=texto_formato)
+    #etiFormato5.configure(text=texto_formato)
+    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
