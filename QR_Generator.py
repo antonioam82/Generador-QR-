@@ -5,11 +5,12 @@ from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 import qrcode
+import cv2
 import threading
 import os
 
 def create_code(ti):
-    global data
+    global data, formato
     try:
         if ti == "w":
             data = input_text.get()
@@ -24,6 +25,11 @@ def create_code(ti):
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
+def ver_codigo():
+    im = cv2.imread("my_qrcode"+formato)
+    cv2.imshow("Your QR",im)
+    cv2.wayKey(0)
+
 def abrir_archivo(ex,n):
     global data
     ruta = filedialog.askopenfilename(initialdir = "/",
@@ -34,17 +40,8 @@ def abrir_archivo(ex,n):
     data = str(lista_ruta[-1])
     #lis_nd = "/".join(lista_ruta[:-1])
     #os.chdir(lis_nd)
-    
     label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
-    #if ex == "png":
-        #etiElemen1.configure(text="ELEMENTO SELECCIONADO: "+data)
-    #elif ex == "jpg":
-        #etiElemen2.configure(text="ELEMENTO SELECCIONADO: "+data)
-    #elif ex == "mp3":
-        #etiElemen3.configure(text="ELEMENTO SELECCIONADO: "+data)
-    #elif ex == "pdf":
-        #etiElemen4.configure(text="ELEMENTO SELECCIONADO: "+data)
-    print(data)
+    #print(data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
@@ -56,12 +53,6 @@ def cambia_formato(f,tf):
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
-    #etiFormato1.configure(text=texto_formato)
-    #etiFormato2.configure(text=texto_formato)
-    #etiFormato3.configure(text=texto_formato)
-    #etiFormato4.configure(text=texto_formato)
-    #etiFormato5.configure(text=texto_formato)
-    #etiFormato6.configure(text=texto_formato)
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -103,6 +94,7 @@ Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png",0)).place(x=321,y=130)
 Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
+#btnVer = Button(f3,text="VER CÓDIGO"
 etiElemen1=Label(f3,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen1.place(x=97,y=70)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
