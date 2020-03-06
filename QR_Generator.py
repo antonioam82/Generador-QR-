@@ -16,20 +16,22 @@ def create_code(ti):
             data = input_text.get()
         if ti == "t":
             data = display.get('1.0',END)
-        #print(data)
-        img = qrcode.make(data)
-        nom_archiv = "my_qrcode"+formato
-        img.save(nom_archiv)
-        messagebox.showinfo("QR CREADO","Código creado con éxito")
-        for i in label_file:
-            i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
+        if data != "":
+            img = qrcode.make(data)
+            nom_archiv = "my_qrcode"+formato
+            img.save(nom_archiv)
+            messagebox.showinfo("QR CREADO","Código creado con éxito")
+            for i in label_file:
+                i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
+        else:
+            messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def ver_codigo():
     if nom_archiv != "":
         im = cv2.imread("my_qrcode"+formato)
-        cv2.imshow("Your QR",im)
+        cv2.imshow("Your QR Code",im)
 
 def abrir_archivo(ex,n):
     global data
@@ -65,6 +67,7 @@ input_text2=StringVar()
 nb.pressed_index = None
 formato = ".png"
 texto_formato = "FORMATO: PNG"
+data = ""
 nom_archiv = ""
 
 f1 = tkinter.Frame(nb, background=color)
