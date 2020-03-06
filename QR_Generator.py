@@ -28,7 +28,6 @@ def create_code(ti):
 def ver_codigo():
     im = cv2.imread("my_qrcode"+formato)
     cv2.imshow("Your QR",im)
-    cv2.waitKey(0)
 
 def abrir_archivo(ex,n):
     global data
@@ -42,7 +41,7 @@ def abrir_archivo(ex,n):
     #os.chdir(lis_nd)
     
     label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
-    #print(data)
+    print(data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
@@ -126,7 +125,6 @@ bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,e
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5]
 pestas = [f1,f2,f3,f4,f5,f6,f7]
 
-#ELEMENTOS COMUNES
 for i in pestas:
     Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
     Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
