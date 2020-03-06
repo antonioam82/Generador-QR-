@@ -32,7 +32,9 @@ def ver_codigo():
         cv2.imshow("Your QR Code",im)
 
 def abrir_archivo(ex,n):
-    global data
+    global data, nom_archiv
+    nom_archiv = ""
+    data = ""
     for i in label_file:
         i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
     ruta = filedialog.askopenfilename(initialdir = "/",
