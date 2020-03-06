@@ -28,7 +28,7 @@ def create_code(ti):
 def ver_codigo():
     im = cv2.imread("my_qrcode"+formato)
     cv2.imshow("Your QR",im)
-    cv2.wayKey(0)
+    cv2.waitKey(0)
 
 def abrir_archivo(ex,n):
     global data
@@ -40,6 +40,7 @@ def abrir_archivo(ex,n):
     data = str(lista_ruta[-1])
     #lis_nd = "/".join(lista_ruta[:-1])
     #os.chdir(lis_nd)
+    
     label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
     #print(data)
 
@@ -94,7 +95,8 @@ Button(f3,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.p
 Button(f3,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f3,text="BUSCAR PNG",fg="black",width=15,bg="light green",command=lambda:abrir_archivo("png",0)).place(x=321,y=130)
 Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('m')).place(x=330,y=174)
-#btnVer = Button(f3,text="VER CÓDIGO"
+btnVer = Button(f3,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo)
+btnVer.place(x=754,y=174)
 etiElemen1=Label(f3,text="NINGÚN ELEMENTO SELECIONADO",bg="light blue",width=80)
 etiElemen1.place(x=97,y=70)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
