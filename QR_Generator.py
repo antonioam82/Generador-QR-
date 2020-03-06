@@ -10,7 +10,7 @@ import threading
 import os
 
 def create_code(ti):
-    global data, formato
+    global data, formato, nom_archiv
     try:
         if ti == "w":
             data = input_text.get()
@@ -18,7 +18,8 @@ def create_code(ti):
             data = display.get('1.0',END)
         #print(data)
         img = qrcode.make(data)
-        img.save("my_qrcode"+formato)
+        nom_archiv = "my_qrcode"+formato
+        img.save(nom_archiv)
         messagebox.showinfo("QR CREADO","Código creado con éxito")
         for i in label_file:
             i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
@@ -26,8 +27,9 @@ def create_code(ti):
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def ver_codigo():
-    im = cv2.imread("my_qrcode"+formato)
-    cv2.imshow("Your QR",im)
+    if nom_archiv != "":
+        im = cv2.imread("my_qrcode"+formato)
+        cv2.imshow("Your QR",im)
 
 def abrir_archivo(ex,n):
     global data
@@ -63,6 +65,7 @@ input_text2=StringVar()
 nb.pressed_index = None
 formato = ".png"
 texto_formato = "FORMATO: PNG"
+nom_archiv = ""
 
 f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
