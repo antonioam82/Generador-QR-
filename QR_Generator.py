@@ -21,8 +21,6 @@ def create_code(ti):
             nom_archiv = "my_qrcode"+formato
             img.save(nom_archiv)
             messagebox.showinfo("QR CREADO","Código creado con éxito")
-            for i in label_file:
-                i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
         else:
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
     except:
@@ -35,17 +33,17 @@ def ver_codigo():
 
 def abrir_archivo(ex,n):
     global data
+    for i in label_file:
+        i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
     ruta = filedialog.askopenfilename(initialdir = "/",
            title = "Seleccione Archivo",filetypes = ((ex+" files","*."+ex),
            ("all files","*.*")))
-
-    lista_ruta = ruta.split("/")
-    data = str(lista_ruta[-1])
-    #lis_nd = "/".join(lista_ruta[:-1])
-    #os.chdir(lis_nd)
-    
-    label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
-    print(data)
+    if ruta != "":
+        lista_ruta = ruta.split("/")
+        data = str(lista_ruta[-1])
+        #lis_nd = "/".join(lista_ruta[:-1])
+        #os.chdir(lis_nd)
+        label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
 
 def inicia(t):
         t = threading.Thread(target=create_code,args=t)
