@@ -14,11 +14,14 @@ def create_code(ti):
     try:
         if ti == "w":
             data = input_text.get()
-        if ti == "t":
+            nom_archiv = "web_qrcode"+formato
+        elif ti == "t":
             data = display.get('1.0',END)
+            nom_archiv = "text_qrcode"+formato
+        elif ti == "m":
+            nom_archiv = file+"_qrcode"+formato
         if data != "":
             img = qrcode.make(data)
-            nom_archiv = "my_qrcode"+formato
             img.save(nom_archiv)
             messagebox.showinfo("QR CREADO","Código creado con éxito")
         else:
@@ -32,7 +35,7 @@ def ver_codigo():
         cv2.imshow("Your QR Code",im)
 
 def abrir_archivo(ex,n):
-    global data, nom_archiv
+    global data, nom_archiv,file
     nom_archiv = ""
     data = ""
     for i in label_file:
@@ -43,6 +46,7 @@ def abrir_archivo(ex,n):
     if ruta != "":
         lista_ruta = ruta.split("/")
         data = str(lista_ruta[-1])
+        file,ex=os.path.splitext(data)
         #lis_nd = "/".join(lista_ruta[:-1])
         #os.chdir(lis_nd)
         label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
