@@ -5,29 +5,44 @@ from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 import qrcode
+import glob
 import cv2
 import threading
 import os
 
+def uni_name(n):
+    files = glob.glob('*'+formato)
+    count = 0
+    for i in files:
+        if n in i:
+            count+=1
+    if count>0:
+        return n+"("+str(count)+")"+formato
+    else:
+        return n+formato
+    
 def create_code(ti):
     global data, formato, nom_archiv
-    try:
-        if ti == "w":
-            data = input_text.get()
-            nom_archiv = "web_qrcode"+formato
-        elif ti == "t":
-            data = display.get('1.0',END)
-            nom_archiv = "text_qrcode"+formato
-        elif ti == "m":
-            nom_archiv = file+"_qrcode"+formato
-        if data != "":
-            img = qrcode.make(data)
-            img.save(nom_archiv)
-            messagebox.showinfo("QR CREADO","Código creado con éxito")
-        else:
-            messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-    except:
-        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    #try:
+    if ti == "w":
+        data = input_text.get()
+        nom_archiv = uni_name("web_qrcode")
+            #nom_archiv = "web_qrcode"+formato
+    elif ti == "t":
+        data = display.get('1.0',END)
+        nom_archiv = uni_name("text_qrcode")
+        #nom_archiv = "text_qrcode"+formato
+    elif ti == "m":
+        nom_archiv = uni_name(file+"_qrcode")
+        #nom_archiv = file+"_qrcode"+formato
+    if data != "":
+        img = qrcode.make(data)
+        img.save(nom_archiv)
+        messagebox.showinfo("QR CREADO","Código creado con éxito")
+    else:
+        messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
+    #except:
+        #messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def ver_codigo():
     if nom_archiv != "":
