@@ -25,6 +25,7 @@ def create_code(ti):
             img = qrcode.make(data)
             img.save(nom_archiv)
             messagebox.showinfo("QR CREADO","Código creado con éxito")
+            data = ""
         else:
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
     except:
