@@ -17,7 +17,7 @@ def create_code(ti):
             data = input_text.get()
             nom_archiv = "web_qrcode"+formato
         elif ti == "t":
-            data = display.get('1.0',END)
+            data = display.get('1.0',END)############################
             nom_archiv = "text_qrcode"+formato
         elif ti == "m" and file != "":
             nom_archiv = file+"_qrcode"+formato
