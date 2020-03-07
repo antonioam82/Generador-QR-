@@ -5,36 +5,22 @@ from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 import qrcode
-import glob
 import cv2
 import threading
 import os
-
-def uni_name(n):
-    files = glob.glob('*'+formato)
-    count = 0
-    for i in files:
-        if n in i:
-            count+=1
-    if count>0:
-        return n+"("+str(count)+")"+formato
-    else:
-        return n+formato
     
 def create_code(ti):
     global data, formato, nom_archiv
+    print(data)
     try:
         if ti == "w":
             data = input_text.get()
-            nom_archiv = uni_name("web_qrcode")
-            #nom_archiv = "web_qrcode"+formato
+            nom_archiv = "web_qrcode"+formato
         elif ti == "t":
             data = display.get('1.0',END)
-            nom_archiv = uni_name("text_qrcode")
-            #nom_archiv = "text_qrcode"+formato
-        elif ti == "m":
-            nom_archiv = uni_name(file+"_qrcode")
-            #nom_archiv = file+"_qrcode"+formato
+            nom_archiv = "text_qrcode"+formato
+        elif ti == "m" and file != "":
+            nom_archiv = file+"_qrcode"+formato
         if data != "":
             img = qrcode.make(data)
             img.save(nom_archiv)
@@ -43,6 +29,8 @@ def create_code(ti):
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+        
+            
 
 def ver_codigo():
     if nom_archiv != "":
@@ -51,7 +39,7 @@ def ver_codigo():
         cv2.imshow("Your QR Code",im)
 
 def abrir_archivo(ex,n):
-    global data, nom_archiv,file
+    global data, nom_archiv, file
     nom_archiv = ""
     data = ""
     for i in label_file:
@@ -88,6 +76,7 @@ nb.pressed_index = None
 formato = ".png"
 texto_formato = "FORMATO: PNG"
 data = ""
+file = ""
 nom_archiv = ""
 
 f1 = tkinter.Frame(nb, background=color)
