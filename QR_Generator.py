@@ -30,9 +30,9 @@ def create_code(ti):
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
-        
+
 def ver_codigo():
-    if nom_archiv != "" and data != "":
+    if nom_archiv != "":
         print(nom_archiv)
         im = cv2.imread(nom_archiv)
         cv2.imshow("Ultimo QR creado",im)
@@ -154,5 +154,4 @@ nb.add(f7, text='MP4',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
-
 
