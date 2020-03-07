@@ -44,8 +44,11 @@ def create_code():
 
 def ver_codigo():
     print(nom_archiv)
-    im = cv2.imread(nom_archiv)
-    cv2.imshow("Ultimo QR creado",im)
+    try:
+        im = cv2.imread(nom_archiv)
+        cv2.imshow("Ultimo QR creado",im)
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
 
 def abrir_archivo(ex,n):
     global data, nom_archiv, file
@@ -171,7 +174,6 @@ for i in pestas:
     Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
     Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
     
-
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='PNG', padding=3)
