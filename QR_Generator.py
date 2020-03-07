@@ -31,6 +31,7 @@ def create_code():
             data = ""
         else:
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
+            nom_archiv = ""
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
