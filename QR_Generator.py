@@ -37,7 +37,7 @@ def ver_codigo():
     if nom_archiv != "":
         print(nom_archiv)
         im = cv2.imread(nom_archiv)
-        cv2.imshow("Your QR Code",im)
+        cv2.imshow("Ultimo QR creado",im)
 
 def abrir_archivo(ex,n):
     global data, nom_archiv, file
@@ -156,3 +156,4 @@ nb.add(f7, text='MP4',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
+
