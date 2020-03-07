@@ -8,19 +8,22 @@ import qrcode
 import cv2
 import threading
 import os
+
+def create_data(ti):
+    global data, nom_archiv
+    if ti == "w":
+        data = input_text.get()
+        nom_archiv = "web_qrcode"+formato
+    elif ti == "t":
+        data = display.get('1.0',END)############################
+        nom_archiv = "text_qrcode"+formato
+    elif ti == "m" and file != "":
+        nom_archiv = file+"_qrcode"+formato
     
-def create_code(ti):
+def create_code():
     global data, formato, nom_archiv
     print(data)
     try:
-        if ti == "w":
-            data = input_text.get()
-            nom_archiv = "web_qrcode"+formato
-        elif ti == "t":
-            data = display.get('1.0',END)############################
-            nom_archiv = "text_qrcode"+formato
-        elif ti == "m" and file != "":
-            nom_archiv = file+"_qrcode"+formato
         if data != "":
             img = qrcode.make(data)
             img.save(nom_archiv)
@@ -54,9 +57,10 @@ def abrir_archivo(ex,n):
         #os.chdir(lis_nd)
         label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
 
-def inicia(t):
-        t = threading.Thread(target=create_code,args=t)
-        t.start()
+def inicia(ti):
+    create_data(ti)
+    t = threading.Thread(target=create_code)
+    t.start()
 
 def cambia_formato(f,tf):
     global formato, texto_formato
@@ -77,6 +81,7 @@ texto_formato = "FORMATO: PNG"
 data = ""
 file = ""
 nom_archiv = ""
+#st = nb.select()
 
 f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
