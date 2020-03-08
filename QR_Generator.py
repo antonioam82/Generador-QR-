@@ -26,8 +26,8 @@ def create_data(ti):
         nom_archiv = file+"_qrcode"+formato
     
 def create_code():
-    global data, formato, nom_archiv
-    print(data)
+    global data
+    #print(data)
     try:
         if data != "":
             img = qrcode.make(data)
@@ -43,7 +43,7 @@ def create_code():
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
 def ver_codigo():
-    print(nom_archiv)
+    #print(nom_archiv)
     try:
         im = cv2.imread(nom_archiv)
         cv2.imshow("Ultimo QR creado",im)
@@ -187,4 +187,3 @@ nb.add(f7, text='MP4',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
-
