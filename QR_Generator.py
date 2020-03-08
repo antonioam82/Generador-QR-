@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import tkinter
+from unidecode import unidecode
 from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
@@ -41,7 +42,6 @@ def create_code():
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
-
 def ver_codigo():
     print(nom_archiv)
     try:
@@ -64,6 +64,8 @@ def abrir_archivo(ex,n):
         lista_ruta = ruta.split("/")
         data = str(lista_ruta[-1])
         file,ex=os.path.splitext(data)
+        file = unidecode(file)
+        print(file)
         #lis_nd = "/".join(lista_ruta[:-1])
         #os.chdir(lis_nd)
         label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
@@ -174,6 +176,7 @@ for i in pestas:
     Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
     Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
     
+
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='PNG', padding=3)
