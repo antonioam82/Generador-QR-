@@ -11,18 +11,22 @@ while True:
     archiv = input("QR a leer: ")
     
     if archiv in os.listdir():
-        img = cv2.imread(archiv)
-        data,bbox,sc=dtector.detectAndDecode(img)
-        if bbox is not None:
-            info = decode(img)
-            print("\n")
-            print(info)
-        else:
-            print("EL ARCHIVO HA DE SER UN CÓDIGO QR")
+        try:
+            img = cv2.imread(archiv)
+            data,bbox,sc=dtector.detectAndDecode(img)
+            if bbox is not None:
+                info = decode(img)
+                print("\n")
+                print(info)
+            else:
+                print("EL ARCHIVO HA DE SER UN CÓDIGO QR")
+        except:
+            print("HUBO UN PROBLEMA AL EFECTUAR LA OPERACIÓN")
     else:
         print("ARCHIVO NO ENCONTRADO")
     conti = ns(input("\n¿Desea continuar?(n/s): "))
     if conti == "n":
         break
+
 
 
