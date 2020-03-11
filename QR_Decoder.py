@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from pyzbar.pyzbar import decode
 from VALID import ns
-from unidecode import unidecode
 import cv2
 import os
 info = ""
