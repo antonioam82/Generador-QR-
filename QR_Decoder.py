@@ -19,7 +19,7 @@ while True:
                 print("\n")
                 print(info)
             else:
-                print("EL ARCHIVO HA DE SER UN CÓDIGO QR")
+                print("INTRODUCE UN CÓDIGO QR VÁLIDO")
         except:
             print("HUBO UN PROBLEMA AL EFECTUAR LA OPERACIÓN")
     else:
