@@ -1,21 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from pyzbar.pyzbar import decode
 from VALID import ns
+from unidecode import unidecode
 import cv2
 import os
 info = ""
 
-dtector = cv2.QRCodeDetector()
-
 while True:
     print("----------------------------------QR DECODER----------------------------------")
-    archiv = input("QR a leer: ")
+    archiv = (input("QR a leer: "))
     
     if archiv in os.listdir():
         try:
             img = cv2.imread(archiv)
-            data,bbox,sc=dtector.detectAndDecode(img)
-            if bbox is not None:
-                info = decode(img)
+            info = decode(img)
+            if info != []:
                 print("\n")
                 print(info)
             else:
