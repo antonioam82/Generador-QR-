@@ -17,10 +17,10 @@ def estado_ver(s):
 def create_data(ti):
     global data, nom_archiv
     if ti == "w":
-        data = input_text.get()
+        data = unidecode(input_text.get())
         nom_archiv = "web_qrcode"+formato
     elif ti == "t":
-        data = display.get('1.0',END)############################
+        data = unidecode(display.get('1.0',END))############################
         nom_archiv = "text_qrcode"+formato
     elif ti == "m" and file != "":
         nom_archiv = file+"_qrcode"+formato
