@@ -17,9 +17,9 @@ while True:
             info = decode(img)
             if info != []:
                 print("\n")
-                print(info)
+                print(info[0][0])
             else:
-                print("INTRODUCE UN CÓDIGO QR VÁLIDO")
+                print("EL ARCHIVO HA DE SER UN CÓDIGO QR")
         except:
             print("HUBO UN PROBLEMA AL EFECTUAR LA OPERACIÓN")
     else:
