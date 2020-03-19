@@ -11,12 +11,9 @@ import threading
 import os
 
 def guarda_en():
-    print(formato)
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
-    print(archivoGuardar)
     return archivoGuardar
     
-
 def estado_ver(s):
     for i in btv:
         i.configure(state=s)
@@ -25,16 +22,11 @@ def create_data(ti):
     global data, nom_archiv
     if ti == "w":
         data = unidecode(input_text.get())
-        #nom_archiv = "web_qrcode"+formato
     elif ti == "t":
-        data = unidecode(display.get('1.0',END))############################
-        #nom_archiv = "text_qrcode"+formato
-    #elif ti == "m" and file != "":
-        #nom_archiv = file+"_qrcode"+formato
+        data = unidecode(display.get('1.0',END))
     
 def create_code():
     global data, archi
-    #print(data)
     try:
         if data != "":
             img = qrcode.make(data)
@@ -46,12 +38,10 @@ def create_code():
         else:
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
             estado_ver('disabled')
-            #nom_archiv = ""
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
 def ver_codigo():
-    #print(nom_archiv)
     try:
         im = cv2.imread(archi)
         cv2.imshow("Ultimo QR creado",im)
@@ -74,8 +64,6 @@ def abrir_archivo(ex,n):
         file,ex=os.path.splitext(data)
         file = unidecode(file)
         print(file)
-        #lis_nd = "/".join(lista_ruta[:-1])
-        #os.chdir(lis_nd)
         label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
 
 def inicia(ti):
@@ -93,7 +81,7 @@ def cambia_formato(f,tf):
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
-nb = ttk.Notebook(width=997, height=250)#765
+nb = ttk.Notebook(width=997, height=250)
 input_text=StringVar()
 input_text2=StringVar()
 nb.pressed_index = None
@@ -102,7 +90,6 @@ texto_formato = "FORMATO: PNG"
 data = ""
 file = ""
 archi = ""
-#st = nb.select()
 
 f1 = tkinter.Frame(nb, background=color)
 f2 = tkinter.Frame(nb, background=color)
