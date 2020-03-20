@@ -11,9 +11,12 @@ import threading
 import os
 
 def guarda_en():
+    print(formato)
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
+    print(archivoGuardar)
     return archivoGuardar
     
+
 def estado_ver(s):
     for i in btv:
         i.configure(state=s)
@@ -27,6 +30,7 @@ def create_data(ti):
     
 def create_code():
     global data, archi
+    #print(data)
     try:
         if data != "":
             img = qrcode.make(data)
@@ -38,6 +42,7 @@ def create_code():
         else:
             messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
             estado_ver('disabled')
+            #nom_archiv = ""
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
@@ -63,7 +68,6 @@ def abrir_archivo(ex,n):
         data = str(lista_ruta[-1])
         file,ex=os.path.splitext(data)
         file = unidecode(file)
-        print(file)
         label_file[n].configure(text="ELEMENTO SELECCIONADO: "+data)
 
 def inicia(ti):
@@ -81,7 +85,7 @@ def cambia_formato(f,tf):
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
-nb = ttk.Notebook(width=997, height=250)
+nb = ttk.Notebook(width=997, height=250)#765
 input_text=StringVar()
 input_text2=StringVar()
 nb.pressed_index = None
@@ -99,6 +103,7 @@ f5 = tkinter.Frame(nb, background=color)
 f6 = tkinter.Frame(nb, background=color)
 f7 = tkinter.Frame(nb, background=color)
 f8 = tkinter.Frame(nb, background=color)
+f9 = tkinter.Frame(nb, background=color)
 
 #ELEMENTOS PESTAÑA "f1"
 Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
@@ -171,6 +176,11 @@ etiFormato8=Label(f8,text=texto_formato,bg="light blue")
 etiFormato8.place(x=751,y=66)
 btnVer8 = Button(f8,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer8.place(x=754,y=174)
+#ELEMENTOS PESTAÑA "f9"
+Button(f9,text="SVG",width=15,bg="light green").place(x=754,y=97)
+Button(f9,text="VCARD",width=15,bg="light green").place(x=754,y=130)
+btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
+btnVer9.place(x=754,y=174)
 
 bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8]
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5,etiElemen6]
@@ -189,6 +199,7 @@ nb.add(f5, text='MP3',padding=3)
 nb.add(f6, text='PDF',padding=3)
 nb.add(f7, text='MP4',padding=3)
 nb.add(f8, text='GIF',padding=3)
+nb.add(f9, text='V-CARD',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
