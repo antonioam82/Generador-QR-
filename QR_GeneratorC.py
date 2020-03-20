@@ -178,9 +178,10 @@ btnVer8 = Button(f8,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,st
 btnVer8.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f9"
 Button(f9,text="SVG",width=15,bg="light green").place(x=754,y=97)
-Button(f9,text="VCARD",width=15,bg="light green").place(x=754,y=130)
-btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
-btnVer9.place(x=754,y=174)
+Button(f9,text="PNG",width=15,bg="light green").place(x=754,y=130)
+Button(f9,text="JPG",width=15,bg="light green").place(x=754,y=163)
+#btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
+#btnVer9.place(x=754,y=174)
 
 bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8]
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5,etiElemen6]
