@@ -16,6 +16,7 @@ def guarda_en():
     print(archivoGuardar)
     return archivoGuardar
     
+
 def estado_ver(s):
     for i in btv:
         i.configure(state=s)
@@ -181,6 +182,10 @@ Button(f9,text="PNG",width=15,bg="light green").place(x=754,y=97)
 Button(f9,text="JPG",width=15,bg="light green").place(x=754,y=130)
 etiFormato9=Label(f9,text=texto_formato,bg="light blue")
 etiFormato9.place(x=751,y=33)
+Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
+Label(f9,text="APELLIDOS:",bg=color).place(x=78,y=97)
+Entry(f9,width=74).place(x=160,y=64)
+Entry(f9,width=74).place(x=160,y=97)
 btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer9.place(x=754,y=174)
 
