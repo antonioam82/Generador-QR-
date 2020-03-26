@@ -18,7 +18,6 @@ def guarda_en():
     #print(archivoGuardar)
     return archivoGuardar
     
-
 def estado_ver(s):
     for i in btv:
         i.configure(state=s)
