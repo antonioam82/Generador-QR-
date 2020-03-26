@@ -94,7 +94,7 @@ nb.pressed_index = None
 formato = ".png"
 #formatovc = ".svg"
 texto_formato = "FORMATO: PNG"
-texto_formatovc = "FORMATO: SVG"
+#texto_formatovc = "FORMATO: SVG"
 data = ""
 file = ""
 archi = ""
@@ -185,7 +185,7 @@ Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato('.s
 Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
 Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green").place(x=330,y=174)
-etiFormato9=Label(f9,text=texto_formatovc,bg="light blue")
+etiFormato9=Label(f9,text='FORMATO: SVG',bg="light blue")
 etiFormato9.place(x=751,y=33)
 Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
 Label(f9,text="APELLIDOS:",bg=color).place(x=78,y=97)
