@@ -181,9 +181,9 @@ etiFormato8.place(x=751,y=66)
 btnVer8 = Button(f8,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer8.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f9"
-Button(f9,text="SVG",width=15,bg="light green").place(x=754,y=64)
-Button(f9,text="PNG",width=15,bg="light green").place(x=754,y=97)
-Button(f9,text="JPG",width=15,bg="light green").place(x=754,y=130)
+Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato('.svg','FORMATO: SVG')).place(x=754,y=64)
+Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
+Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
 Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green").place(x=330,y=174)
 etiFormato9=Label(f9,text=texto_formatovc,bg="light blue")
 etiFormato9.place(x=751,y=33)
@@ -196,7 +196,7 @@ Entry(f9,width=74).place(x=160,y=130)
 btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer9.place(x=754,y=174)
 
-bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8]
+bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8,etiFormato9]
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5,etiElemen6]
 pestas = [f1,f2,f3,f4,f5,f6,f7,f8]
 btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8]
