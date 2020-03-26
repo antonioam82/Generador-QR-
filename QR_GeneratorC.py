@@ -88,8 +88,8 @@ root.title("QR Code Generator")
 color = "light blue"
 nb = ttk.Notebook(width=997, height=250)#765
 input_text=StringVar()
-input_text2=StringVar()
-nb.pressed_index = None
+#input_text2=StringVar()
+#nb.pressed_index = None
 formato = ".png"
 #formatovc = ".svg"
 texto_formato = "FORMATO: PNG"
