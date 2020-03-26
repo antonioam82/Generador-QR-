@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import tkinter
+from segno import helpers
 from unidecode import unidecode
 from tkinter import *
 from tkinter import messagebox, ttk, filedialog
@@ -90,7 +91,9 @@ input_text=StringVar()
 input_text2=StringVar()
 nb.pressed_index = None
 formato = ".png"
+#formatovc = ".svg"
 texto_formato = "FORMATO: PNG"
+texto_formatovc = "FORMATO: SVG"
 data = ""
 file = ""
 archi = ""
@@ -180,7 +183,7 @@ btnVer8.place(x=754,y=174)
 Button(f9,text="SVG",width=15,bg="light green").place(x=754,y=64)
 Button(f9,text="PNG",width=15,bg="light green").place(x=754,y=97)
 Button(f9,text="JPG",width=15,bg="light green").place(x=754,y=130)
-etiFormato9=Label(f9,text=texto_formato,bg="light blue")
+etiFormato9=Label(f9,text=texto_formatovc,bg="light blue")
 etiFormato9.place(x=751,y=33)
 Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
 Label(f9,text="APELLIDOS:",bg=color).place(x=78,y=97)
