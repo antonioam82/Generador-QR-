@@ -12,9 +12,10 @@ import threading
 import os
 
 def guarda_en():
-    print(formato)
+    global archivoGuardar
+    #print(formato)
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
-    print(archivoGuardar)
+    #print(archivoGuardar)
     return archivoGuardar
     
 
@@ -50,7 +51,7 @@ def create_code():
 def ver_codigo():
     try:
         im = cv2.imread(archi)
-        cv2.imshow("Ultimo QR creado",im)
+        cv2.imshow(archivoGuardar.split("/")[-1],im)
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
 
