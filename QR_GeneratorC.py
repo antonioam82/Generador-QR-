@@ -13,7 +13,7 @@ import os
 
 def guarda_en():
     global archivoGuardar
-    #print(formato)
+    print(formato)
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
     #print(archivoGuardar)
     return archivoGuardar
@@ -23,29 +23,39 @@ def estado_ver(s):
         i.configure(state=s)
 
 def create_data(ti):
-    global data, nom_archiv
+    global data, nom_archiv, vcard
     if ti == "w":
         data = unidecode(input_text.get())
     elif ti == "t":
         data = unidecode(display.get('1.0',END))
+    elif ti == "vc":
+        data = [input_text2.get(),input_text3.get(),input_text4.get()]
+        vcard = True
     
 def create_code():
     global data, archi
     #print(data)
-    try:
-        if data != "":
-            img = qrcode.make(data)
-            archi = guarda_en()
-            if archi != "":
-                img.save(archi)
-                messagebox.showinfo("QR CREADO","Código creado con éxito")
-                estado_ver('normal')
+    #try:
+    if data != "":
+        if vcard == True:
+            img = helpers.make_vcard(name=data[0],displayname=data[1],email=(data[2]))
+            print("ok")
         else:
-            messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-            estado_ver('disabled')
+            img = qrcode.make(data)
+        archi = guarda_en()
+        if archi != "": #PROVISIONAL
+            if vcard == True:
+                img.save(archi,scale=6)
+            else:
+                img.save(archi)
+            messagebox.showinfo("QR CREADO","Código creado con éxito")
+            estado_ver('normal')
+    else:
+        messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
+        estado_ver('disabled')
             #nom_archiv = ""
-    except:
-        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+    #except:
+        #messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
 def ver_codigo():
     try:
@@ -88,12 +98,15 @@ root.title("QR Code Generator")
 color = "light blue"
 nb = ttk.Notebook(width=997, height=250)#765
 input_text=StringVar()
+input_text2=StringVar()
+input_text3=StringVar()
+input_text4=StringVar()
 #input_text2=StringVar()
-#nb.pressed_index = None
+nb.pressed_index = None
+vcard = False
 formato = ".png"
 #formatovc = ".svg"
 texto_formato = "FORMATO: PNG"
-#texto_formatovc = "FORMATO: SVG"
 data = ""
 file = ""
 archi = ""
@@ -183,22 +196,22 @@ btnVer8.place(x=754,y=174)
 Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato('.svg','FORMATO: SVG')).place(x=754,y=64)
 Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
 Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green").place(x=330,y=174)
-etiFormato9=Label(f9,text='FORMATO: SVG',bg="light blue")
+Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('vc')).place(x=330,y=174)
+etiFormato9=Label(f9,text=texto_formato,bg="light blue")
 etiFormato9.place(x=751,y=33)
 Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
 Label(f9,text="APELLIDOS:",bg=color).place(x=78,y=97)
 Label(f9,text="CORREO:",bg=color).place(x=92,y=130)
-Entry(f9,width=74).place(x=160,y=64)
-Entry(f9,width=74).place(x=160,y=97)
-Entry(f9,width=74).place(x=160,y=130)
+Entry(f9,width=74,textvariable=input_text2).place(x=160,y=64)
+Entry(f9,width=74,textvariable=input_text3).place(x=160,y=97)
+Entry(f9,width=74,textvariable=input_text4).place(x=160,y=130)
 btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer9.place(x=754,y=174)
 
 bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8,etiFormato9]
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5,etiElemen6]
 pestas = [f1,f2,f3,f4,f5,f6,f7,f8]
-btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8]
+btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8,btnVer9]
 
 for i in pestas:
     Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
