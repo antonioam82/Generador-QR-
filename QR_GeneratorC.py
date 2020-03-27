@@ -227,4 +227,3 @@ nb.pack(expand=1, fill='both')
 
 root.mainloop()
 
-
