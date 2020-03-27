@@ -13,9 +13,7 @@ import os
 
 def guarda_en():
     global archivoGuardar
-    print(formato)
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
-    #print(archivoGuardar)
     return archivoGuardar
     
 def estado_ver(s):
@@ -30,39 +28,39 @@ def create_data(ti):
         data = unidecode(display.get('1.0',END))
     elif ti == "vc":
         data = [input_text2.get(),input_text3.get(),input_text4.get()]
-        vcard = True
+        if formato == ".svg":
+            vcard = True
     
 def create_code():
-    global data, archi
-    #print(data)
-    #try:
-    if data != "":
-        if vcard == True:
-            img = helpers.make_vcard(name=data[0],displayname=data[1],email=(data[2]))
-            print("ok")
-        else:
-            img = qrcode.make(data)
-        archi = guarda_en()
-        if archi != "": #PROVISIONAL
+    global data, archi, vcard
+    try:
+        if data != "":
             if vcard == True:
-                img.save(archi,scale=6)
+                print("vcard")
+                img = helpers.make_vcard(name=data[0],displayname=data[1],email=(data[2]))
             else:
-                img.save(archi)
-            messagebox.showinfo("QR CREADO","Código creado con éxito")
-            estado_ver('normal')
-    else:
-        messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-        estado_ver('disabled')
-            #nom_archiv = ""
-    #except:
-        #messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+                img = qrcode.make(data)
+            archi = guarda_en()
+            if archi != "": #PROVISIONAL
+                if vcard == True:
+                    img.save(archi,scale=6)
+                else:
+                    img.save(archi)
+                messagebox.showinfo("QR CREADO","Código creado con éxito")
+                vcard = False
+            else:
+                messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
+                estado_ver('disabled')
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
 def ver_codigo():
-    try:
-        im = cv2.imread(archi)
-        cv2.imshow(archivoGuardar.split("/")[-1],im)
-    except:
-        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
+    if formato != ".svg":
+        try:
+            im = cv2.imread(archi)
+            cv2.imshow(archivoGuardar.split("/")[-1],im)
+        except:
+            messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
 
 def abrir_archivo(ex,n):
     global data, nom_archiv, file
@@ -101,11 +99,9 @@ input_text=StringVar()
 input_text2=StringVar()
 input_text3=StringVar()
 input_text4=StringVar()
-#input_text2=StringVar()
 nb.pressed_index = None
 vcard = False
 formato = ".png"
-#formatovc = ".svg"
 texto_formato = "FORMATO: PNG"
 data = ""
 file = ""
@@ -229,3 +225,5 @@ nb.add(f9, text='V-CARD',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
+
+
