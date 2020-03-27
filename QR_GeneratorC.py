@@ -50,7 +50,7 @@ def create_code():
                 vcard = False
             else:
                 messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-                estado_ver('disabled')
+            estado_ver('disabled')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
