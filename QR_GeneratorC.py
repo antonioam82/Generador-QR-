@@ -48,9 +48,10 @@ def create_code():
                     img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
                 vcard = False
+                estado_ver('normal')
             else:
                 messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-            estado_ver('disabled')
+                estado_ver('disabled')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
     
