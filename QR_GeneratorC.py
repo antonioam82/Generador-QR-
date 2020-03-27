@@ -36,7 +36,6 @@ def create_code():
     try:
         if data != "":
             if vcard == True:
-                print("vcard")
                 img = helpers.make_vcard(name=data[0],displayname=data[1],email=(data[2]))
             else:
                 img = qrcode.make(data)
@@ -226,4 +225,5 @@ nb.add(f9, text='V-CARD',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
+
 
