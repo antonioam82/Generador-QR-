@@ -43,7 +43,7 @@ def create_code():
             archi = guarda_en()
             if archi != "": #PROVISIONAL
                 if vcard == True:
-                    img.save(archi,scale=5)
+                    img.save(archi,scale=6)
                 else:
                     img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
@@ -123,7 +123,7 @@ Label(f1,text="DIRECCIÓN WEB",bg="light blue").place(x=331,y=74)
 Entry(f1,font=('Arial',15),width=45,justify="left",textvariable=input_text).place(x=131,y=97)
 Button(f1,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('w')).place(x=330,y=174)
 etiFormato1=Label(f1,text=texto_formato,bg="light blue")
-etiFormato1.place(x=751,y=66)#780
+etiFormato1.place(x=751,y=33)#780
 btnVer1 = Button(f1,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer1.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f2"
@@ -132,7 +132,7 @@ display.place(x=131,y=97)
 Label(f2,text="TEXTO:",bg="light blue").place(x=88,y=95)
 Button(f2,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('t')).place(x=330,y=174)
 etiFormato2=Label(f2,text=texto_formato,bg="light blue")
-etiFormato2.place(x=751,y=66)
+etiFormato2.place(x=751,y=33)
 btnVer2 = Button(f2,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer2.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f3"
@@ -141,7 +141,7 @@ Button(f3,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen1=Label(f3,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen1.place(x=97,y=70)
 etiFormato3=Label(f3,text=texto_formato,bg="light blue")
-etiFormato3.place(x=751,y=66)
+etiFormato3.place(x=751,y=33)
 btnVer3 = Button(f3,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer3.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f4"
@@ -150,7 +150,7 @@ Button(f4,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen2=Label(f4,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen2.place(x=97,y=70)
 etiFormato4=Label(f4,text=texto_formato,bg="light blue")
-etiFormato4.place(x=751,y=66)
+etiFormato4.place(x=751,y=33)
 btnVer4 = Button(f4,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer4.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f5"
@@ -159,7 +159,7 @@ Button(f5,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen3=Label(f5,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen3.place(x=97,y=70)
 etiFormato5=Label(f5,text=texto_formato,bg="light blue")
-etiFormato5.place(x=751,y=66)
+etiFormato5.place(x=751,y=33)
 btnVer5 = Button(f5,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer5.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f6"
@@ -168,7 +168,7 @@ Button(f6,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen4=Label(f6,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen4.place(x=97,y=70)
 etiFormato6=Label(f6,text=texto_formato,bg="light blue")
-etiFormato6.place(x=751,y=66)
+etiFormato6.place(x=751,y=33)
 btnVer6 = Button(f6,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer6.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f7"
@@ -177,7 +177,7 @@ Button(f7,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen5=Label(f7,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen5.place(x=97,y=70)
 etiFormato7=Label(f7,text=texto_formato,bg="light blue")
-etiFormato7.place(x=751,y=66)
+etiFormato7.place(x=751,y=33)
 btnVer7 = Button(f7,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer7.place(x=754,y=174)
 #ELEMNTOS PESTAÑA "f8"
@@ -186,7 +186,7 @@ Button(f8,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia
 etiElemen6=Label(f8,text="NINGÚN ELEMENTO SELECCIONADO",bg="light blue",width=80)
 etiElemen6.place(x=97,y=70)
 etiFormato8=Label(f8,text=texto_formato,bg="light blue")
-etiFormato8.place(x=751,y=66)
+etiFormato8.place(x=751,y=33)
 btnVer8 = Button(f8,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer8.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f9"
@@ -211,9 +211,10 @@ pestas = [f1,f2,f3,f4,f5,f6,f7,f8]
 btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8,btnVer9]
 
 for i in pestas:
+    Button(i,text="SVG",width=15,bg="light green",command=lambda:cambia_formato('.svg','FORMATO: SVG')).place(x=754,y=64)
     Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
     Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-    
+
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='PNG', padding=3)
