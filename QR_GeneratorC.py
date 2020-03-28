@@ -47,9 +47,6 @@ def create_code():
                 img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
                 estado_ver('normal')
-            else:
-                messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
-                estado_ver('disabled')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
@@ -62,9 +59,6 @@ def create_vcard():
             if archi != "":
                 img.save(archi,scale=5)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
-                btnVer9.configure(state='normal')
-            else:
-                messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
                 btnVer9.configure(state='normal')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
@@ -260,6 +254,9 @@ nb.add(f9, text='V-CARD',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
+
+
+
 
 
 
