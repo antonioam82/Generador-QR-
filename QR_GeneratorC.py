@@ -43,7 +43,7 @@ def create_code():
             archi = guarda_en()
             if archi != "": #PROVISIONAL
                 if vcard == True:
-                    img.save(archi,scale=6)
+                    img.save(archi,scale=5)
                 else:
                     img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
