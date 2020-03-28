@@ -15,53 +15,74 @@ def guarda_en():
     global archivoGuardar
     archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato)
     return archivoGuardar
+
+def guardar_vcard():
+    global archivoGuardar
+    archivoGuardar=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=formato2)
+    return archivoGuardar
     
 def estado_ver(s):
     for i in btv:
         i.configure(state=s)
 
 def create_data(ti):
-    global data, nom_archiv, vcard
+    global data, nom_archiv
     if ti == "w":
         data = unidecode(input_text.get())
     elif ti == "t":
         data = unidecode(display.get('1.0',END))
-    elif ti == "vc":
-        data = [unidecode(input_text2.get()),unidecode(input_text3.get()),
-                unidecode(input_text4.get())]
-        if formato == ".svg":
-            vcard = True
+        
+def create_data2():
+    global data2, nom_archiv
+    data2 = [unidecode(input_text2.get()),unidecode(input_text3.get()),
+             unidecode(input_text4.get())]
     
 def create_code():
-    global data, archi, vcard
+    global data, archi
     try:
         if data != "":
-            if vcard == True:
-                img = helpers.make_vcard(name=data[0],displayname=data[1],email=(data[2]))
-            else:
-                img = qrcode.make(data)
+            img = qrcode.make(data)
             archi = guarda_en()
-            if archi != "": #PROVISIONAL
-                if vcard == True:
-                    img.save(archi,scale=6)
-                else:
-                    img.save(archi)
+            if archi != "": 
+                img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
-                vcard = False
                 estado_ver('normal')
             else:
                 messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
                 estado_ver('disabled')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
-    
-def ver_codigo():
-    if formato != ".svg":
+
+def create_vcard():
+    global data2, archi
+    try:
+        if data2 != []:
+            img = helpers.make_vcard(name=data2[0],displayname=data2[1],email=(data2[2]))
+            archi = guardar_vcard()
+            if archi != "":
+                img.save(archi,scale=5)
+                messagebox.showinfo("QR CREADO","Código creado con éxito")
+                btnVer9.configure(state='normal')
+            else:
+                messagebox.showwarning("SIN CONTENIDO","NO SE INTRODUJERON DATOS")
+                btnVer9.configure(state='normal')
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
+
+def ver_vcard():
+    if formato2 != ".svg":
         try:
             im = cv2.imread(archi)
             cv2.imshow(archivoGuardar.split("/")[-1],im)
         except:
             messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
+            
+def ver_codigo():
+    try:
+        im = cv2.imread(archi)
+        cv2.imshow(archivoGuardar.split("/")[-1],im)
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
 
 def abrir_archivo(ex,n):
     global data, nom_archiv, file
@@ -85,12 +106,24 @@ def inicia(ti):
     t = threading.Thread(target=create_code)
     t.start()
 
+def inicia2():
+    create_data2()
+    t1 = threading.Thread(target=create_vcard)
+    t1.start()
+
 def cambia_formato(f,tf):
     global formato, texto_formato
     formato = f
     texto_formato = tf
     for el in bts:
         el.configure(text=texto_formato)
+
+def cambia_formato2(f1,tf1):
+    global formato2, texto_formato2
+    formato2 = f1
+    texto_formato2 = tf1
+    etiFormato9.configure(text=texto_formato2)
+    
 
 root = tkinter.Tk()
 root.title("QR Code Generator")
@@ -100,10 +133,11 @@ input_text=StringVar()
 input_text2=StringVar()
 input_text3=StringVar()
 input_text4=StringVar()
-nb.pressed_index = None
-vcard = False
+#nb.pressed_index = None
 formato = ".png"
+formato2 = ".svg"
 texto_formato = "FORMATO: PNG"
+texto_formato2 = "FORMATO: SVG"
 data = ""
 file = ""
 archi = ""
@@ -190,11 +224,11 @@ etiFormato8.place(x=751,y=66)
 btnVer8 = Button(f8,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
 btnVer8.place(x=754,y=174)
 #ELEMENTOS PESTAÑA "f9"
-Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato('.svg','FORMATO: SVG')).place(x=754,y=64)
-Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
-Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia('vc')).place(x=330,y=174)
-etiFormato9=Label(f9,text=texto_formato,bg="light blue")
+Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato2('.svg','FORMATO: SVG')).place(x=754,y=64)
+Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato2('.png','FORMATO: PNG')).place(x=754,y=97)
+Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato2('.jpg','FORMATO: JPG')).place(x=754,y=130)
+Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green",command=inicia2).place(x=330,y=174)
+etiFormato9=Label(f9,text=texto_formato2,bg="light blue")
 etiFormato9.place(x=751,y=33)
 Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
 Label(f9,text="APELLIDOS:",bg=color).place(x=78,y=97)
@@ -202,18 +236,18 @@ Label(f9,text="CORREO:",bg=color).place(x=92,y=130)
 Entry(f9,width=74,textvariable=input_text2).place(x=160,y=64)
 Entry(f9,width=74,textvariable=input_text3).place(x=160,y=97)
 Entry(f9,width=74,textvariable=input_text4).place(x=160,y=130)
-btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_codigo,state='disabled')
+btnVer9 = Button(f9,text="VER CÓDIGO",bg="gold2",width=15,command=ver_vcard,state='disabled')
 btnVer9.place(x=754,y=174)
 
-bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8,etiFormato9]
+bts = [etiFormato1,etiFormato2,etiFormato3,etiFormato4,etiFormato5,etiFormato6,etiFormato7,etiFormato8]
 label_file = [etiElemen1,etiElemen2,etiElemen3,etiElemen4,etiElemen5,etiElemen6]
 pestas = [f1,f2,f3,f4,f5,f6,f7,f8]
-btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8,btnVer9]
+btv = [btnVer1,btnVer2,btnVer3,btnVer4,btnVer5,btnVer6,btnVer7,btnVer8]
 
 for i in pestas:
-    Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=97)
-    Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.svg','FORMATO: SVG')).place(x=754,y=130)
-
+    Button(i,text="PNG",width=15,bg="light green",command=lambda:cambia_formato('.png','FORMATO: PNG')).place(x=754,y=97)
+    Button(i,text="JPG",width=15,bg="light green",command=lambda:cambia_formato('.jpg','FORMATO: JPG')).place(x=754,y=130)
+    
 nb.add(f1, text='WEB', padding=3)
 nb.add(f2, text='TEXTO', padding=3)
 nb.add(f3, text='PNG', padding=3)
@@ -226,5 +260,6 @@ nb.add(f9, text='V-CARD',padding=3)
 nb.pack(expand=1, fill='both')
 
 root.mainloop()
+
 
 
