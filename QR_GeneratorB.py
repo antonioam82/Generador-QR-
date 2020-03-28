@@ -34,7 +34,7 @@ def create_code():
         if data != "":
             img = qrcode.make(data)
             archi = guarda_en()
-            if archi != "": #PROVISIONAL
+            if archi != "": 
                 img.save(archi)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
                 estado_ver('normal')
