@@ -118,7 +118,6 @@ def cambia_formato2(f1,tf1):
     texto_formato2 = tf1
     etiFormato9.configure(text=texto_formato2)
     
-
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
