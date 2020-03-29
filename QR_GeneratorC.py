@@ -26,16 +26,14 @@ def estado_ver(s):
         i.configure(state=s)
 
 def create_data(ti):
-    global data, nom_archiv
+    global data, data2, nom_archiv
     if ti == "w":
         data = unidecode(input_text.get())
     elif ti == "t":
         data = unidecode(display.get('1.0',END))
-        
-def create_data2():
-    global data2, nom_archiv
-    data2 = [unidecode(input_text2.get()),unidecode(input_text3.get()),
-             unidecode(input_text4.get())]
+    elif ti == "vc":
+        data2 = [unidecode(input_text2.get()),unidecode(input_text3.get()),
+                unidecode(input_text4.get())]
     
 def create_code():
     global data, archi
@@ -59,7 +57,8 @@ def create_vcard():
             if archi != "":
                 img.save(archi,scale=5)
                 messagebox.showinfo("QR CREADO","Código creado con éxito")
-                btnVer9.configure(state='normal')
+                if not formato2 == ".svg":
+                    btnVer9.configure(state='normal')
     except:
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
@@ -100,8 +99,8 @@ def inicia(ti):
     t = threading.Thread(target=create_code)
     t.start()
 
-def inicia2():
-    create_data2()
+def inicia2(ti2):
+    create_data(ti2)
     t1 = threading.Thread(target=create_vcard)
     t1.start()
 
@@ -118,6 +117,7 @@ def cambia_formato2(f1,tf1):
     texto_formato2 = tf1
     etiFormato9.configure(text=texto_formato2)
     
+
 root = tkinter.Tk()
 root.title("QR Code Generator")
 color = "light blue"
@@ -220,7 +220,7 @@ btnVer8.place(x=754,y=174)
 Button(f9,text="SVG",width=15,bg="light green",command=lambda:cambia_formato2('.svg','FORMATO: SVG')).place(x=754,y=64)
 Button(f9,text="PNG",width=15,bg="light green",command=lambda:cambia_formato2('.png','FORMATO: PNG')).place(x=754,y=97)
 Button(f9,text="JPG",width=15,bg="light green",command=lambda:cambia_formato2('.jpg','FORMATO: JPG')).place(x=754,y=130)
-Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green",command=inicia2).place(x=330,y=174)
+Button(f9,text="CREAR CÓDIGO",fg="black",bg="light green",command=lambda:inicia2('vc')).place(x=330,y=174)
 etiFormato9=Label(f9,text=texto_formato2,bg="light blue")
 etiFormato9.place(x=751,y=33)
 Label(f9,text="NOMBRE:",bg=color).place(x=88,y=64)
