@@ -80,7 +80,9 @@ def abrir_archivo(ex,n,i):
     global data, nom_archiv, file
     nom_archiv = ""
     data = ""
-    estado_ver('disabled',i)
+    for el in btv:
+        el.configure(state='disabled')
+    #estado_ver('disabled',i)
     for i in label_file:
         i.configure(text="NINGÚN ELEMENTO SELECCIONADO")
     ruta = filedialog.askopenfilename(initialdir = "/",
