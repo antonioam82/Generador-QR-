@@ -134,7 +134,6 @@ formato = ".png"
 formato2 = ".svg"
 texto_formato = "FORMATO: PNG"
 texto_formato2 = "FORMATO: SVG"
-data = ""
 file = ""
 archi = ""
 
