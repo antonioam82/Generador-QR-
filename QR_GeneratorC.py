@@ -31,7 +31,7 @@ def create_data(ti):
     elif ti == "t":
         data = unidecode(display.get('1.0',END))
     elif ti == "vc":
-        data2 = [unidecode(input_text2.get()),unidecode(input_text3.get()),
+        data2 = [unidecode(input_text3.get()+";"+input_text2.get()),unidecode(input_text2.get()),
                 unidecode(input_text4.get())]
     
 def create_code():
