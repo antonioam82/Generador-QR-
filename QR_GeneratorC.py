@@ -62,12 +62,11 @@ def create_vcard():
         messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL GENERAR EL CÓDIGO")
 
 def ver_vcard():
-    if formato2 != ".svg":
-        try:
-            im = cv2.imread(archi)
-            cv2.imshow(archivoGuardar.split("/")[-1],im)
-        except:
-            messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
+    try:
+        im = cv2.imread(archi)
+        cv2.imshow(archivoGuardar.split("/")[-1],im)
+    except:
+        messagebox.showwarning("ERROR","HUBO UN PROBLEMA AL MOSTRAR EL CÓDIGO")
             
 def ver_codigo():
     try:
@@ -118,6 +117,8 @@ def cambia_formato2(f1,tf1):
     global formato2, texto_formato2
     formato2 = f1
     texto_formato2 = tf1
+    if formato2 == ".svg":
+        btnVer9.configure(state='disabled')
     etiFormato9.configure(text=texto_formato2)
     
 
