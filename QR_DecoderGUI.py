@@ -1,5 +1,6 @@
 from tkinter import *
 from pyzbar.pyzbar import decode
+import pyautogui
 import cv2
 import os
 
