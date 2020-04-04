@@ -43,11 +43,12 @@ display=scrolledtext.ScrolledText(ventana,width=66,foreground='black',height=1,p
 display.place(x=9,y=50)
 
 btnCargar = Button(ventana, text="CARGAR CÓDIGO",bg="khaki",width=22,command=abrir)
-btnCargar.place(x=178,y=110)
+btnCargar.place(x=178,y=140)
 btnScreen = Button(ventana, text="DETECTAR QR EN PANTALLA",bg="khaki",command=inicia)
-btnScreen.place(x=178,y=155)
+btnScreen.place(x=178,y=175)
 
 ventana.mainloop()
+
 
 
 
