@@ -14,6 +14,7 @@ def screen_shoot():
         etiElement.configure(text="ELEM INDENT: "+str(info[0][0]))
     else:
         etiElement.configure(text="NO SE DETECTO CÓDIGO")
+    os.remove("screenshoot.jpg")
 
 def abrir():
     ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR ARCHIVO",
@@ -41,4 +42,5 @@ btnScreen = Button(ventana, text="DETECTAR QR EN PANTALLA",bg="khaki",command=sc
 btnScreen.place(x=178,y=155)
 
 ventana.mainloop()
+
 
