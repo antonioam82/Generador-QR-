@@ -27,7 +27,7 @@ def abrir():
         if info != []:
             display.insert(END,info[0][0])
         else:
-            etiElement.configure(text="NO SE DETECTO CÓDIGO")
+            messagebox.showwarning("ERROR","NO SE DETECTÓ CÓDIGO")
 
 def inicia():
     t = threading.Thread(target = screen_shoot())
@@ -39,8 +39,6 @@ ventana.geometry("520x220")
 ventana.configure(background = "light blue")
 file_name=""
 
-#etiElement = Label(ventana, text="CARGAR ARCHIVO PNG O JPG",width=71,bg='light blue')
-#etiElement.place(x=9,y=65)
 display=scrolledtext.ScrolledText(ventana,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
 display.place(x=9,y=50)
 
