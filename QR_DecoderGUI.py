@@ -36,7 +36,7 @@ def inicia():
 ventana = Tk()
 ventana.title('LECTOR DE CÓDIGOS QR')
 ventana.geometry("520x220")
-ventana.configure(background = "light blue")
+ventana.configure(background = "SlateGray2")
 file_name=""
 
 display=scrolledtext.ScrolledText(ventana,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
