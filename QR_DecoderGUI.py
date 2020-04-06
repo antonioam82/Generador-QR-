@@ -9,14 +9,15 @@ import cv2
 import os
 
 def screen_shoot():
-    pyautogui.screenshot("screenshoot.jpg")
-    archivo = cv2.imread("screenshoot.jpg")
+    pyautogui.screenshot("QRsearch_screenshoot.jpg")
+    archivo = cv2.imread("QRsearch_screenshoot.jpg")
     info = decode(archivo)
     if info != []:
+        display.delete('1.0',END)
         display.insert(END,info[0][0])
     else:
-        messagebox.showwarning("ERROR","NO SE DETECTÓ CÓDIGO")
-    os.remove("screenshoot.jpg")
+        messagebox.showwarning("QR NO ENCONTRADO","NO SE DETECTÓ CÓDIGO")
+    os.remove("QRsearch_screenshoot.jpg")
 
 def abrir():
     ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR ARCHIVO",
@@ -25,6 +26,7 @@ def abrir():
         archivo = cv2.imread(ruta)
         info = decode(archivo)
         if info != []:
+            display.delete('1.0',END)
             display.insert(END,info[0][0])
         else:
             messagebox.showwarning("ERROR","NO SE DETECTÓ CÓDIGO")
