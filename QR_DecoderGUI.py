@@ -41,7 +41,7 @@ ventana.geometry("520x220")
 ventana.configure(background = "SlateGray2")
 file_name=""
 
-display=scrolledtext.ScrolledText(ventana,width=66,foreground='black',height=1,padx=10, pady=10,font=('Arial', 10))
+display=scrolledtext.ScrolledText(ventana,width=66,foreground='black',height=3,padx=10, pady=10,font=('Arial', 10))
 display.place(x=9,y=50)
 
 btnCargar = Button(ventana, text="CARGAR CÓDIGO",bg="khaki",width=22,command=abrir)
