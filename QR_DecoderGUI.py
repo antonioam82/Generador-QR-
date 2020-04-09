@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox, filedialog
 import tkinter.scrolledtext as scrolledtext
-from unidecode import unidecode
 import threading
 from pyzbar.pyzbar import decode
 import pyautogui
