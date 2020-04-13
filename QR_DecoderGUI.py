@@ -19,7 +19,6 @@ class main:
         self.ventana.configure(background = "SlateGray2")
         self.file_name=""
         self.arc=""
-        #cap = cv2.VideoCapture(0)
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=66,foreground='black',height=3,padx=10, pady=10,font=('Arial', 10))
         self.display.place(x=9,y=50)
@@ -28,7 +27,7 @@ class main:
         self.btnCargar.place(x=178,y=140)
         self.btnScreen = Button(self.ventana, text="DETECTAR QR EN PANTALLA",bg="khaki",command=self.screen_shot)
         self.btnScreen.place(x=178,y=175)
-        self.btnCamara = Button(self.ventana, text="USAR CAMARA",bg="khaki",width=22,command=self.inicia_camara)
+        self.btnCamara = Button(self.ventana, text="DETECTAR POR CAMARA",bg="khaki",width=22,command=self.inicia_camara)
         self.btnCamara.place(x=178,y=205)
 
         self.ventana.mainloop()
@@ -82,7 +81,7 @@ class App:
         self.btnScreenshot = Button(self.camara,text="LEER",width=30,bg='goldenrod2',
                     activebackground='red')
         self.btnScreenshot.pack(side=TOP,expand=1, fill=X)
-        self.display=scrolledtext.ScrolledText(self.camara,width=86,foreground='black',height=2,padx=10, pady=10,font=('Arial', 10))
+        self.display=scrolledtext.ScrolledText(self.camara,width=86,background='gray22',foreground="green",height=2,padx=10, pady=10,font=('Arial', 10))
         self.display.pack(side=TOP)
 
         self.visor()
@@ -132,6 +131,7 @@ class VideoCaptura:
                 
 if __name__=="__main__":
     main()    
+          
            
         
          
