@@ -1,4 +1,4 @@
-  from tkinter import *
+from tkinter import *
 from tkinter import messagebox, filedialog
 import tkinter.scrolledtext as scrolledtext
 import threading
