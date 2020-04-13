@@ -1,4 +1,4 @@
-   from tkinter import *
+from tkinter import *
 from tkinter import messagebox, filedialog
 import tkinter.scrolledtext as scrolledtext
 import threading
@@ -83,7 +83,7 @@ class App:
         self.btnScreenshot = Button(self.camara,text="LEER",width=30,bg='goldenrod2',
                     activebackground='red',command=self.captura)
         self.btnScreenshot.pack(side=TOP,expand=1, fill=X)
-        self.display=scrolledtext.ScrolledText(self.camara,width=86,background='black',foreground="green",height=2,padx=10, pady=10,font=('Arial', 10))
+        self.display=scrolledtext.ScrolledText(self.camara,width=86,background='black',foreground="green",height=4,padx=10, pady=10,font=('Arial', 10))
         self.display.pack(side=TOP)
 
         self.visor()
@@ -148,8 +148,7 @@ class VideoCaptura:
                 
 if __name__=="__main__":
     main()    
-        
-        
+              
           
            
         
