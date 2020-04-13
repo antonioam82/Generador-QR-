@@ -10,8 +10,6 @@ import numpy as np
 import cv2
 import os
 
-os.chdir(r'C:\Users\Antonio\Documents\AAM images')
-
 class main:
     def __init__(self):
         #print("ventana")
