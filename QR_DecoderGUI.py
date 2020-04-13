@@ -1,4 +1,4 @@
-from tkinter import *
+ from tkinter import *
 from tkinter import messagebox, filedialog
 import tkinter.scrolledtext as scrolledtext
 import threading
@@ -12,7 +12,7 @@ import os
 
 class main:
     def __init__(self):
-        print("ventana")
+        #print("ventana")
         self.ventana = Tk()
         self.ventana.title('LECTOR DE CÓDIGOS QR')
         self.ventana.geometry("520x235")
@@ -67,7 +67,7 @@ class main:
 
 class App:
     def __init__(self,font_video=0):
-        print("camara")
+        #print("camara")
         self.appName = "QR camera"
         self.camara = Toplevel()
         self.camara.title(self.appName)
@@ -81,7 +81,10 @@ class App:
         self.canvas.pack()
         self.btnScreenshot = Button(self.camara,text="LEER",width=30,bg='goldenrod2',
                     activebackground='red')
-        self.btnScreenshot.pack(side=TOP)
+        self.btnScreenshot.pack(side=TOP,expand=1, fill=X)
+        self.display=scrolledtext.ScrolledText(self.camara,width=86,foreground='black',height=2,padx=10, pady=10,font=('Arial', 10))
+        self.display.pack(side=TOP)
+
         self.visor()
         self.camara.mainloop()
         
@@ -92,7 +95,7 @@ class App:
             cv2.imwrite(image,cv2.cvtColor(frame,cv2.COLOR_BGR2RGB))
             
     def visor(self):
-        print("visor")
+        #print("visor")
         ret, frame=self.vid.get_frame()
         #self.real_color = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         if ret:
@@ -103,7 +106,7 @@ class App:
 
 class VideoCaptura:
     def __init__(self,font_video=0):
-        print("Vcap")
+        #print("Vcap")
         self.vid = cv2.VideoCapture(font_video)
         if not self.vid.isOpened():
             raise ValueError("No se puede usar esta camara")
@@ -129,6 +132,7 @@ class VideoCaptura:
                 
 if __name__=="__main__":
     main()    
+           
         
          
         
