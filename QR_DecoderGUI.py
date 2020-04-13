@@ -1,4 +1,4 @@
-from tkinter import *
+   from tkinter import *
 from tkinter import messagebox, filedialog
 import tkinter.scrolledtext as scrolledtext
 import threading
@@ -9,6 +9,8 @@ import time
 import numpy as np
 import cv2
 import os
+
+os.chdir(r'C:\Users\Antonio\Documents\AAM images')
 
 class main:
     def __init__(self):
@@ -81,11 +83,13 @@ class App:
         self.btnScreenshot = Button(self.camara,text="LEER",width=30,bg='goldenrod2',
                     activebackground='red',command=self.captura)
         self.btnScreenshot.pack(side=TOP,expand=1, fill=X)
-        self.display=scrolledtext.ScrolledText(self.camara,width=86,background='black',foreground="light green",height=2,padx=10, pady=10,font=('Arial', 10))
+        self.display=scrolledtext.ScrolledText(self.camara,width=86,background='black',foreground="green",height=2,padx=10, pady=10,font=('Arial', 10))
         self.display.pack(side=TOP)
 
         self.visor()
         self.camara.mainloop()
+
+        
         
     def leer(self):
         archivo = cv2.imread("cameraCapt.jpg")
@@ -94,7 +98,9 @@ class App:
             self.display.delete('1.0',END)
             self.display.insert(END,info[0][0])
         else:
-            print("No se detecta código")
+            messagebox.showwarning("QR NO ENCONTRADO","NO SE DETECTÓ CÓDIGO")
+            #print("No se detecta código")
+        os.remove("cameraCapt.jpg")
         
     def captura(self):
         ver,frame=self.vid.get_frame()
@@ -111,6 +117,7 @@ class App:
             self.photo = ImageTk.PhotoImage(image=Image.fromarray(frame))
             self.canvas.create_image(0,0,image=self.photo,anchor=NW)#0,0
             self.camara.after(15,self.visor)
+            
 #-------------------------------------------------------------------------------------------------------------------------            
 
 class VideoCaptura:
@@ -136,11 +143,12 @@ class VideoCaptura:
     def __del__(self):
         print("OK")
         #if self.vid.isOpened():
-        self.vid.release()
+        #self.vid.release(font_video)
             #self.out.release()
                 
 if __name__=="__main__":
     main()    
+        
         
           
            
