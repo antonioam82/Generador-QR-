@@ -5,7 +5,6 @@ import threading
 from PIL import Image, ImageTk
 from pyzbar.pyzbar import decode
 import pyautogui
-import time
 import numpy as np
 import cv2
 import os
