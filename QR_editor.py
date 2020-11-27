@@ -13,7 +13,7 @@ class app():
         
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
-        self.display.place(x=90,y=60)
+        self.display.place(x=30,y=30)
         self.ventana.mainloop()
 
 if __name__=="__main__":
