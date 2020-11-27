@@ -9,7 +9,7 @@ class app():
     def __init__(self):
         self.ventana = Tk()
         self.ventana.title("EDITOR QR")
-        self.ventana.configure(bg='light blue',width=700,height=370)
+        self.ventana.configure(bg='light blue',width=800,height=370)
         
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
