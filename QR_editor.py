@@ -15,6 +15,10 @@ class app():
         self.display.place(x=30,y=30)
         self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15)
         self.btnCreate.place(x=225,y=240)
+        self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
+        self.lblSiz.place(x=633,y=145)
+        self.btnSiz = Entry(self.ventana,width=9)
+        self.btnSiz.place(x=670,y=145)
         self.lblVer = Label(self.ventana,text="VERSION:",bg="light blue")
         self.lblVer.place(x=610,y=180)
         self.entryVer = Entry(self.ventana,width=9)
@@ -26,3 +30,4 @@ class app():
 
 if __name__=="__main__":
     app()
+
