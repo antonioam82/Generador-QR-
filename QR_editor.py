@@ -15,7 +15,7 @@ class app():
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
-        self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15)
+        self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15,command=self.create_qr)
         self.btnCreate.place(x=225,y=240)
         self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
         self.lblSiz.place(x=633,y=145)
@@ -29,6 +29,11 @@ class app():
         self.btnView.place(x=615,y=240)
         
         self.ventana.mainloop()
+
+    def create_qr(self):
+        qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
+        qr.save("editedQR.png",scale=self.size.get())
+            
 
 if __name__=="__main__":
     app()
