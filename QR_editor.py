@@ -31,8 +31,11 @@ class app():
         self.ventana.mainloop()
 
     def create_qr(self):
-        qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
-        qr.save("editedQR.png",scale=self.size.get())
+        new_file = filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".png",filetypes=[('png files','*.png'),
+                                               ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
+        if new_file != "":
+            qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
+            qr.save(new_file,scale=self.size.get())
             
 
 if __name__=="__main__":
