@@ -11,7 +11,9 @@ class app():
         self.ventana.title("EDITOR QR")
         self.ventana.configure(bg='light blue',width=800,height=370)
         self.size = IntVar()
+        self.size.set(1)
         self.version = IntVar()
+        self.version.set(1)
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
