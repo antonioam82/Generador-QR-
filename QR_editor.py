@@ -38,12 +38,17 @@ class app():
                                                ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
         if new_file != "":
             name,ex = os.path.splitext(new_file)
-            if ex != ".txt":
-                qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
-                qr.save(new_file,scale=self.size.get())
-            else:
-                qr = segno.make(self.display.get('1.0',END),micro=False)
-                qr.save(new_file)
+            try:
+                if ex != ".txt":
+                    qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
+                    qr.save(new_file,scale=self.size.get())
+                else:
+                    qr = segno.make(self.display.get('1.0',END),micro=False)
+                    qr.save(new_file)
+                messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
+            except Exception as e:
+                print(str(e))
+                messagebox.showwarning("ERROR","Hubo un problema al raelizar la operación")
 
 if __name__=="__main__":
     app()
