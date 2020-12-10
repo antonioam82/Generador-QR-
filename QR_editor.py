@@ -19,6 +19,7 @@ class app():
         self.size.set(1)
         self.version = IntVar()
         self.version.set(1)
+        self.new_file = ""
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
@@ -68,11 +69,12 @@ class app():
                 break
 
     def view_code(self):
-        try:
-            code = cv2.imread(self.new_file)
-            cv2.imshow(self.name,code)
-        except Exception as e:
-            messagebox.showwarning("ERROR",str(e))
+        if self.new_file != "":
+            try:
+                code = cv2.imread(self.new_file)
+                cv2.imshow(self.name,code)
+            except Exception as e:
+                messagebox.showwarning("ERROR",str(e))
             
     def init_copy(self):
         print("copiando")
