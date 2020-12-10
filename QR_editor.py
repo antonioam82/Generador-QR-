@@ -1,6 +1,9 @@
 import segno
 import tkinter
 import os
+import pyperclip
+import time
+import threading
 from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
@@ -18,6 +21,8 @@ class app():
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
+        self.copy = Button(self.ventana,text="COPY TEXT",command=self.init_copy)
+        self.copy.place(x=30,y=198)
         self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15,command=self.create_qr)
         self.btnCreate.place(x=225,y=240)
         self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
@@ -47,8 +52,24 @@ class app():
                     qr.save(new_file)
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
-                print(str(e))
-                messagebox.showwarning("ERROR","Hubo un problema al raelizar la operación")
+                messagebox.showwarning("ERROR",str(e))
+                
+    def copy_text(self):
+        self.display.delete('1.0',END)
+        self.ultima_copia = pyperclip.paste().strip()
+        while True:
+            time.sleep(0.1)
+            self.copia = pyperclip.paste().strip()
+            if self.copia != self.ultima_copia:
+                self.display.insert(END,self.copia)
+                self.ultima_copia = self.copia 
+                print("Done!")
+                break
+            
+    def init_copy(self):
+        print("copiando")
+        t = threading.Thread(target=self.copy_text)
+        t.start()
 
 if __name__=="__main__":
     app()
