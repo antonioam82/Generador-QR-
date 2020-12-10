@@ -2,6 +2,7 @@ import segno
 import tkinter
 import os
 import pyperclip
+import cv2
 import time
 import threading
 from tkinter import *
@@ -33,23 +34,23 @@ class app():
         self.lblVer.place(x=610,y=180)
         self.entryVer = Entry(self.ventana,width=9,textvariable=self.version)
         self.entryVer.place(x=670,y=180)
-        self.btnView = Button(self.ventana,text="VIEW CODE",bg="gold2",width=15)
+        self.btnView = Button(self.ventana,text="VIEW CODE",bg="gold2",width=15,command=self.view_code)
         self.btnView.place(x=615,y=240)
         
         self.ventana.mainloop()
 
     def create_qr(self):
-        new_file = filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".png",filetypes=[('png files','*.png'),
+        self.new_file = filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".png",filetypes=[('png files','*.png'),
                                                ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
-        if new_file != "":
-            name,ex = os.path.splitext(new_file)
+        if self.new_file != "":
+            self.name,ex = os.path.splitext(self.new_file)
             try:
                 if ex != ".txt":
                     qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
-                    qr.save(new_file,scale=self.size.get())
+                    qr.save(self.new_file,scale=self.size.get())
                 else:
                     qr = segno.make(self.display.get('1.0',END),micro=False)
-                    qr.save(new_file)
+                    qr.save(self.new_file)
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
@@ -65,6 +66,13 @@ class app():
                 self.ultima_copia = self.copia 
                 print("Done!")
                 break
+
+    def view_code(self):
+        try:
+            code = cv2.imread(self.new_file)
+            cv2.imshow(self.name,code)
+        except Exception as e:
+            messagebox.showwarning("ERROR",str(e))
             
     def init_copy(self):
         print("copiando")
