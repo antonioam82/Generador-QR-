@@ -25,6 +25,8 @@ class app():
         self.display.place(x=30,y=30)
         self.copy = Button(self.ventana,text="COPY TEXT",command=self.init_copy)
         self.copy.place(x=30,y=198)
+        self.clear = Button(self.ventana,text="CLEAR TEXT",command=self.clear)
+        self.clear.place(x=101,y=198)
         self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15,command=self.create_qr)
         self.btnCreate.place(x=225,y=240)
         self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
@@ -55,6 +57,9 @@ class app():
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
+
+    def clear(self):
+        self.display.delete('1.0',END)
                 
     def copy_text(self):
         self.display.delete('1.0',END)
