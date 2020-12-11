@@ -14,7 +14,7 @@ class app():
     def __init__(self):
         self.ventana = Tk()
         self.ventana.title("EDITOR QR")
-        self.ventana.configure(bg='light blue',width=800,height=370)
+        self.ventana.configure(bg='light blue',width=740,height=315)
         self.size = IntVar()
         self.size.set(1)
         self.version = IntVar()
@@ -30,15 +30,15 @@ class app():
         self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15,command=self.create_qr)
         self.btnCreate.place(x=225,y=240)
         self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
-        self.lblSiz.place(x=633,y=145)
+        self.lblSiz.place(x=593,y=30)
         self.btnSiz = Entry(self.ventana,width=9,textvariable=self.size)
-        self.btnSiz.place(x=670,y=145)
+        self.btnSiz.place(x=630,y=30)
         self.lblVer = Label(self.ventana,text="VERSION:",bg="light blue")
-        self.lblVer.place(x=610,y=180)
+        self.lblVer.place(x=570,y=70)
         self.entryVer = Entry(self.ventana,width=9,textvariable=self.version)
-        self.entryVer.place(x=670,y=180)
+        self.entryVer.place(x=630,y=70)
         self.btnView = Button(self.ventana,text="VIEW CODE",bg="gold2",width=15,command=self.view_code)
-        self.btnView.place(x=615,y=240)
+        self.btnView.place(x=575,y=240)
         
         self.ventana.mainloop()
 
@@ -46,7 +46,7 @@ class app():
         self.new_file = filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".png",filetypes=[('png files','*.png'),
                                                ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
         if self.new_file != "":
-            self.name,ex = os.path.splitext(self.new_file)
+            name,ex = os.path.splitext(self.new_file)
             try:
                 if ex != ".txt":
                     qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
@@ -77,7 +77,7 @@ class app():
         if self.new_file != "":
             try:
                 code = cv2.imread(self.new_file)
-                cv2.imshow(self.name,code)
+                cv2.imshow(self.new_file.split('/')[-1],code)
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
             
