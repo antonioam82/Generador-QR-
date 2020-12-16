@@ -9,6 +9,7 @@ from tkinter import *
 from tkinter import messagebox, ttk, filedialog
 import tkinter.scrolledtext as scrolledtext
 
+lista = ['M1','M2','M3','M4']
 
 class app():
     def __init__(self):
@@ -17,8 +18,8 @@ class app():
         self.ventana.configure(bg='light blue',width=740,height=315)
         self.size = IntVar()
         self.size.set(1)
-        self.version = IntVar()
-        self.version.set(1)
+        self.version = StringVar()
+        self.version.set("1")
         self.new_file = ""
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
@@ -47,12 +48,18 @@ class app():
                                                ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
         if self.new_file != "":
             name,ex = os.path.splitext(self.new_file)
+            if self.version.get() not in lista:
+                ver = int(self.version.get())
+                self.microcode = False
+            else:
+                ver = self.version.get()
+                self.microcode = True
             try:
                 if ex != ".txt":
-                    qr = segno.make(self.display.get('1.0',END),version=self.version.get(),micro=False)
+                    qr = segno.make(self.display.get('1.0',END),version=ver,micro=self.microcode)
                     qr.save(self.new_file,scale=self.size.get())
                 else:
-                    qr = segno.make(self.display.get('1.0',END),micro=False)
+                    qr = segno.make(self.display.get('1.0',END),micro=self.microcode)
                     qr.save(self.new_file)
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
