@@ -6,7 +6,7 @@ import cv2
 import time
 import threading
 from tkinter import *
-from tkinter import messagebox, ttk, filedialog
+from tkinter import messagebox, ttk, filedialog, colorchooser
 import tkinter.scrolledtext as scrolledtext
 
 lista = ['M1','M2','M3','M4']
@@ -21,9 +21,8 @@ class app():
         self.version = StringVar()
         self.version.set("1")
         self.new_file = ""
-        self.SQblack = "black"
-        self.SQwhite = "white"
-        lista = [self.SQblack,self.SQwhite]
+        self.SQblack = "#000000"
+        self.SQwhite = "#ffffff"
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
@@ -37,11 +36,11 @@ class app():
         self.lblSiz.place(x=593,y=30)
         self.btnSiz = Entry(self.ventana,width=9,textvariable=self.size)
         self.btnSiz.place(x=630,y=30)
-        self.btnDark = Button(self.ventana,text="DARK SQRE")
+        self.btnDark = Button(self.ventana,text="DARK SQRE",command=self.darkpart_color)
         self.btnDark.place(x=573,y=120)
         self.lblCo1 = Label(bg="black",width=5)
         self.lblCo1.place(x=646,y=122)
-        self.btnCo2 = Button(self.ventana,text="LIGHT SQRE")
+        self.btnCo2 = Button(self.ventana,text="LIGHT SQRE",command=self.lightpart_color)
         self.btnCo2.place(x=571,y=148)
         self.lblCo2 = Label(self.ventana,bg="white",width=5)
         self.lblCo2.place(x=646,y=150)
@@ -68,10 +67,12 @@ class app():
             try:
                 if ex != ".txt":
                     qr = segno.make(self.display.get('1.0',END),version=ver,micro=self.microcode)
-                    qr.save(self.new_file,scale=self.size.get())
+                    qr.save(self.new_file,scale=self.size.get(),dark=self.SQblack,light=self.SQwhite)
+                    print("txtx")
                 else:
                     qr = segno.make(self.display.get('1.0',END),micro=self.microcode)
-                    qr.save(self.new_file, dark=self.SQblack, light=self.SQwhite)
+                    qr.save(self.new_file)
+                    print("OK")
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
@@ -91,6 +92,18 @@ class app():
                 print("Done!")
                 break
 
+    def darkpart_color(self):
+        _,color = colorchooser.askcolor()
+        if color is not None:
+            self.SQblack = color
+            print(self.SQblack)
+            
+    def lightpart_color(self):
+        _,color = colorchooser.askcolor()
+        if color is not None:
+            self.SQwhite = color
+            print(self.SQwhite)
+    
     def view_code(self):
         if self.new_file != "":
             try:
