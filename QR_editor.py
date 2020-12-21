@@ -36,14 +36,16 @@ class app():
         self.lblSiz.place(x=593,y=30)
         self.btnSiz = Entry(self.ventana,width=9,textvariable=self.size)
         self.btnSiz.place(x=630,y=30)
+        self.etiCol = Label(self.ventana,text="COLORS:",bg="light blue")
+        self.etiCol.place(x=573,y=117)
         self.btnDark = Button(self.ventana,text="DARK",width=8,command=self.darkpart_color)
-        self.btnDark.place(x=573,y=120)
+        self.btnDark.place(x=573,y=137)
         self.lblCo1 = Label(bg="black",width=5)
-        self.lblCo1.place(x=646,y=122)
+        self.lblCo1.place(x=646,y=139)
         self.btnCo2 = Button(self.ventana,text="LIGHT",width=8,command=self.lightpart_color)
-        self.btnCo2.place(x=573,y=148)
+        self.btnCo2.place(x=573,y=165)
         self.lblCo2 = Label(self.ventana,bg="white",width=5)
-        self.lblCo2.place(x=646,y=150)
+        self.lblCo2.place(x=646,y=165)
         self.lblVer = Label(self.ventana,text="VERSION:",bg="light blue")
         self.lblVer.place(x=570,y=70)
         self.entryVer = Entry(self.ventana,width=9,textvariable=self.version)
@@ -68,11 +70,9 @@ class app():
                 if ex != ".txt":
                     qr = segno.make(self.display.get('1.0',END),version=ver,micro=self.microcode)
                     qr.save(self.new_file,scale=self.size.get(),dark=self.SQblack,light=self.SQwhite)
-                    print("txtx")
                 else:
                     qr = segno.make(self.display.get('1.0',END),micro=self.microcode)
                     qr.save(self.new_file)
-                    print("OK")
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
@@ -89,7 +89,6 @@ class app():
             if self.copia != self.ultima_copia:
                 self.display.insert(END,self.copia)
                 self.ultima_copia = self.copia 
-                print("Done!")
                 break
 
     def darkpart_color(self):
@@ -97,14 +96,12 @@ class app():
         if color is not None:
             self.SQblack = color
             self.lblCo1.configure(bg=color)
-            print(self.SQblack)
             
     def lightpart_color(self):
         _,color = colorchooser.askcolor()
         if color is not None:
             self.SQwhite = color
             self.lblCo2.configure(bg=color)
-            print(self.SQwhite)
     
     def view_code(self):
         if self.new_file != "":
