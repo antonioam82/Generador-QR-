@@ -96,12 +96,14 @@ class app():
         _,color = colorchooser.askcolor()
         if color is not None:
             self.SQblack = color
+            self.lblCo1.configure(bg=color)
             print(self.SQblack)
             
     def lightpart_color(self):
         _,color = colorchooser.askcolor()
         if color is not None:
             self.SQwhite = color
+            self.lblCo2.configure(bg=color)
             print(self.SQwhite)
     
     def view_code(self):
