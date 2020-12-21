@@ -21,6 +21,9 @@ class app():
         self.version = StringVar()
         self.version.set("1")
         self.new_file = ""
+        self.SQblack = "black"
+        self.SQwhite = "white"
+        lista = [self.SQblack,self.SQwhite]
 
         self.display=scrolledtext.ScrolledText(self.ventana,width=70,height=10,font=('Arial', 10))
         self.display.place(x=30,y=30)
@@ -68,7 +71,7 @@ class app():
                     qr.save(self.new_file,scale=self.size.get())
                 else:
                     qr = segno.make(self.display.get('1.0',END),micro=self.microcode)
-                    qr.save(self.new_file)
+                    qr.save(self.new_file, dark=self.SQblack, light=self.SQwhite)
                 messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
@@ -103,4 +106,3 @@ class app():
 
 if __name__=="__main__":
     app()
-
