@@ -14,7 +14,7 @@ lista = ['M1','M2','M3','M4']
 class app():
     def __init__(self):
         self.ventana = Tk()
-        self.ventana.title("EDITOR QR")
+        self.ventana.title("QR CREATOR")
         self.ventana.configure(bg='light blue',width=740,height=315)
         self.size = IntVar()
         self.size.set(1)
@@ -31,7 +31,7 @@ class app():
         self.clear = Button(self.ventana,text="CLEAR TEXT",command=self.clear)
         self.clear.place(x=101,y=198)
         self.btnCreate = Button(self.ventana,text="CREATE CODE",bg="light green",width=15,command=self.create_qr)
-        self.btnCreate.place(x=225,y=240)
+        self.btnCreate.place(x=228,y=240)
         self.lblSiz = Label(self.ventana,text="SIZE:",bg="light blue")
         self.lblSiz.place(x=593,y=30)
         self.btnSiz = Entry(self.ventana,width=9,textvariable=self.size)
@@ -56,24 +56,24 @@ class app():
         self.ventana.mainloop()
 
     def create_qr(self):
-        self.new_file = filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".png",filetypes=[('png files','*.png'),
+        self.new_file = filedialog.asksaveasfilename(initialdir="/",title="SAVE",defaultextension=".png",filetypes=[('png files','*.png'),
                                                ('svg files','*.svg'),('eps files','*.eps'),('txt files','*.txt')])
         if self.new_file != "":
-            name,ex = os.path.splitext(self.new_file)
-            if self.version.get() not in lista:
+            name,self.ex = os.path.splitext(self.new_file)
+            if self.version.get() not in lista and self.version.get().isdigit():
                 ver = int(self.version.get())
                 self.microcode = False
             else:
                 ver = self.version.get()
                 self.microcode = True
             try:
-                if ex != ".txt":
+                if self.ex != ".txt":
                     qr = segno.make(self.display.get('1.0',END),version=ver,micro=self.microcode)
                     qr.save(self.new_file,scale=self.size.get(),dark=self.SQblack,light=self.SQwhite)
                 else:
                     qr = segno.make(self.display.get('1.0',END),micro=self.microcode)
                     qr.save(self.new_file)
-                messagebox.showinfo("TAREA COMPLETADA","Código creado con éxito")
+                messagebox.showinfo("TASK COMPLETED","Code created successfully")
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
 
@@ -104,15 +104,19 @@ class app():
             self.lblCo2.configure(bg=color)
     
     def view_code(self):
-        if self.new_file != "":
+        if self.new_file != "" and self.ex == ".png":
             try:
                 code = cv2.imread(self.new_file)
                 cv2.imshow(self.new_file.split('/')[-1],code)
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
+        else:
+            messagebox.showinfo("CAN NOT DISPLAY","Can not display the file.")
+            
             
     def init_copy(self):
-        print("copiando")
+        messagebox.showinfo("COPYING","select text and copy")
+        print("copying")
         t = threading.Thread(target=self.copy_text)
         t.start()
 
