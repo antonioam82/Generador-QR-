@@ -50,7 +50,7 @@ class app():
         self.lblVer.place(x=570,y=70)
         self.entryVer = Entry(self.ventana,width=9,textvariable=self.version)
         self.entryVer.place(x=630,y=70)
-        self.btnView = Button(self.ventana,text="VIEW CODE",bg="gold2",width=15,command=self.view_code)
+        self.btnView = Button(self.ventana,text="DISPLAY CODE",bg="gold2",width=15,command=self.view_code)
         self.btnView.place(x=575,y=240)
         
         self.ventana.mainloop()
@@ -116,7 +116,6 @@ class app():
             
     def init_copy(self):
         messagebox.showinfo("COPYING","select text and copy")
-        print("copying")
         t = threading.Thread(target=self.copy_text)
         t.start()
 
